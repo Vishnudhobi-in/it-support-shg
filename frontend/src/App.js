@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 const API_BASE = "https://it-support-shg-api.onrender.com/api";
 
-// 1. Comprehensive Business Sectors (including IT & Digital services)
 const BUSINESS_SECTORS = [
   "Information Technology (IT) & Software Services",
   "Digital Marketing, Web & Data Solutions",
@@ -18,7 +17,6 @@ const BUSINESS_SECTORS = [
   "Other Micro-Enterprise"
 ];
 
-// 2. Core IT Bottlenecks & Help Needed Categories
 const HELP_CATEGORIES = [
   "Digital Payments / UPI, QR & Soundbox Setup",
   "Website Development & Landing Pages",
@@ -32,23 +30,20 @@ const HELP_CATEGORIES = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home'); // 'home', 'it-helpdesk', 'community', 'toolkits'
+  const [activeTab, setActiveTab] = useState('home');
   const [tickets, setTickets] = useState([]);
   const [posts, setPosts] = useState([]);
   
-  // Search & Filter state
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSectorFilter, setSelectedSectorFilter] = useState('All');
 
-  // Auth & Profile states
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('shg_user')) || null);
-  const [authMode, setAuthMode] = useState('login'); // 'login' or 'signup'
+  const [authMode, setAuthMode] = useState('login');
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [authError, setAuthError] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
 
-  // Form states
   const [authForm, setAuthForm] = useState({
     name: '',
     email: '',
@@ -196,7 +191,7 @@ export default function App() {
       })
     });
     setTicketForm({ title: '', category: HELP_CATEGORIES[0], description: '', contact: user.phone || '' });
-    showNotification('Support request submitted! Community volunteers have been notified.');
+    showNotification('Support request submitted!');
     fetchTickets();
   };
 
@@ -216,11 +211,10 @@ export default function App() {
       })
     });
     setPostForm({ shgName: '', businessType: BUSINESS_SECTORS[0], helpNeeded: HELP_CATEGORIES[0], message: '', lookingFor: 'Co-Founders & Business Partners', contact: user.phone || '' });
-    showNotification('Collaboration opportunity published to the live network!');
+    showNotification('Collaboration opportunity published!');
     fetchPosts();
   };
 
-  // Filtered lists
   const filteredTickets = tickets.filter(t => {
     const matchesSearch = (t.title + t.description + (t.category || '')).toLowerCase().includes(searchQuery.toLowerCase());
     const matchesSector = selectedSectorFilter === 'All' || t.businessType === selectedSectorFilter;
@@ -234,72 +228,120 @@ export default function App() {
   });
 
   return (
-    <div style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', backgroundColor: '#f8fafc', minHeight: '100vh', color: '#0f172a' }}>
+    <div style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', backgroundColor: '#f8fafc', minHeight: '100vh', color: '#0f172a', overflowX: 'hidden' }}>
       
+      {/* Mobile-Adaptive Global Styles */}
+      <style>{`
+        * { box-sizing: border-box; }
+        .responsive-hero {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 32px;
+          align-items: center;
+        }
+        .responsive-grid-split {
+          display: grid;
+          grid-template-columns: 380px 1fr;
+          gap: 24px;
+          align-items: start;
+        }
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+          text-align: center;
+        }
+        .cards-grid-3 {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 20px;
+        }
+        .feature-grid-2 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        /* Mobile Screens (<= 768px) */
+        @media (max-width: 768px) {
+          .responsive-hero {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+            padding: 32px 16px !important;
+          }
+          .responsive-grid-split {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+          .stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+          }
+          .feature-grid-2 {
+            grid-template-columns: 1fr !important;
+          }
+          .hero-title {
+            font-size: 28px !important;
+            line-height: 1.25 !important;
+          }
+          .main-nav-container {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+          }
+          .tabs-scroll-bar {
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+          }
+          .tabs-scroll-bar::-webkit-scrollbar {
+            display: none;
+          }
+          .tab-btn {
+            padding: 10px 14px !important;
+            font-size: 13px !important;
+          }
+          .page-padding {
+            padding: 16px 14px !important;
+          }
+        }
+      `}</style>
+
       {/* 1. TOP ANNOUNCEMENT BAR */}
-      <div style={{ background: 'linear-gradient(90deg, #1e3a8a, #0284c7)', color: '#ffffff', padding: '8px 24px', fontSize: '13px', textAlign: 'center', fontWeight: '500' }}>
-        ✨ Empowering 10,000+ Rural & Urban Self-Help Groups with Free Digital Enablement, IT Support & B2B Matchmaking.
+      <div style={{ background: 'linear-gradient(90deg, #1e3a8a, #0284c7)', color: '#ffffff', padding: '8px 16px', fontSize: '12px', textAlign: 'center', fontWeight: '500' }}>
+        ✨ Empowering 10,000+ Grassroots SHGs with Free Digital Enablement & IT Support.
       </div>
 
       {/* 2. MAIN HEADER & NAVIGATION */}
       <header style={{ backgroundColor: '#ffffff', borderBottom: '1px solid #e2e8f0', position: 'sticky', top: 0, zIndex: 50, boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '14px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="main-nav-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           
-          {/* Brand Logo */}
-          <div onClick={() => setActiveTab('home')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: 'linear-gradient(135deg, #2563eb, #059669)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: '900', fontSize: '20px', boxShadow: '0 4px 10px rgba(37,99,235,0.3)' }}>
+          <div onClick={() => setActiveTab('home')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ width: '38px', height: '38px', borderRadius: '8px', background: 'linear-gradient(135deg, #2563eb, #059669)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: '900', fontSize: '18px', flexShrink: 0 }}>
               US
             </div>
             <div>
-              <div style={{ fontSize: '19px', fontWeight: '800', letterSpacing: '-0.5px', color: '#0f172a' }}>
-                UdyamSetu <span style={{ color: '#2563eb', fontSize: '14px', fontWeight: '600' }}>SHG TechBridge</span>
+              <div style={{ fontSize: '17px', fontWeight: '800', letterSpacing: '-0.5px', color: '#0f172a' }}>
+                UdyamSetu <span style={{ color: '#2563eb', fontSize: '13px', fontWeight: '600' }}>SHG TechBridge</span>
               </div>
-              <div style={{ fontSize: '11px', color: '#64748b' }}>Ministry of Micro, Small & Grassroots Tech Enablement</div>
+              <div style={{ fontSize: '10px', color: '#64748b' }}>Ministry of Micro & Grassroots Tech Enablement</div>
             </div>
           </div>
 
-          {/* Nav Links */}
-          <nav style={{ display: 'flex', gap: '8px' }}>
-            {[
-              { id: 'home', label: '🏠 Overview & Motive' },
-              { id: 'it-helpdesk', label: '🛠️ IT Helpdesk & Support' },
-              { id: 'community', label: '🤝 Community & Matchmaking' },
-              { id: 'toolkits', label: '📚 Digital Toolkits' }
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                style={{
-                  padding: '9px 16px',
-                  borderRadius: '8px',
-                  border: 'none',
-                  background: activeTab === tab.id ? '#eff6ff' : 'transparent',
-                  color: activeTab === tab.id ? '#1d4ed8' : '#475569',
-                  fontWeight: activeTab === tab.id ? '700' : '500',
-                  fontSize: '14px',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-
-          {/* User Profile / Auth Area */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
             {user ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                 <button
                   onClick={() => setShowProfileModal(true)}
-                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 14px', backgroundColor: '#f1f5f9', border: '1px solid #cbd5e1', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '13px', color: '#1e293b' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 12px', backgroundColor: '#f1f5f9', border: '1px solid #cbd5e1', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '12px', color: '#1e293b' }}
                 >
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10b981' }}></span>
-                  {user.name} ({user.role})
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#10b981' }}></span>
+                  {user.name.split(' ')[0]} ({user.role})
                 </button>
                 <button
                   onClick={handleLogout}
-                  style={{ padding: '8px 14px', backgroundColor: '#fee2e2', color: '#991b1b', border: '1px solid #fecaca', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '13px' }}
+                  style={{ padding: '6px 10px', backgroundColor: '#fee2e2', color: '#991b1b', border: '1px solid #fecaca', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '12px' }}
                 >
                   Logout
                 </button>
@@ -307,18 +349,46 @@ export default function App() {
             ) : (
               <button
                 onClick={() => { setAuthMode('login'); setShowAuthModal(true); }}
-                style={{ padding: '10px 20px', background: 'linear-gradient(135deg, #2563eb, #1d4ed8)', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', boxShadow: '0 4px 12px rgba(37,99,235,0.25)', fontSize: '14px' }}
+                style={{ padding: '8px 16px', background: 'linear-gradient(135deg, #2563eb, #1d4ed8)', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', fontSize: '13px' }}
               >
                 Join / Sign In
               </button>
             )}
           </div>
         </div>
+
+        {/* Scrollable Navigation Bar on Mobile */}
+        <nav className="tabs-scroll-bar" style={{ display: 'flex', borderTop: '1px solid #f1f5f9', padding: '0 16px', maxWidth: '1280px', margin: '0 auto' }}>
+          {[
+            { id: 'home', label: '🏠 Overview' },
+            { id: 'it-helpdesk', label: '🛠️ IT Helpdesk' },
+            { id: 'community', label: '🤝 Matchmaking' },
+            { id: 'toolkits', label: '📚 Toolkits' }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              className="tab-btn"
+              onClick={() => setActiveTab(tab.id)}
+              style={{
+                padding: '12px 16px',
+                border: 'none',
+                background: 'none',
+                color: activeTab === tab.id ? '#1d4ed8' : '#64748b',
+                fontWeight: activeTab === tab.id ? '700' : '500',
+                fontSize: '14px',
+                cursor: 'pointer',
+                borderBottom: activeTab === tab.id ? '2.5px solid #2563eb' : '2.5px solid transparent'
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
       </header>
 
       {/* Floating Notification */}
       {statusMsg && (
-        <div style={{ position: 'fixed', bottom: '24px', right: '24px', backgroundColor: '#065f46', color: 'white', padding: '14px 22px', borderRadius: '10px', boxShadow: '0 10px 25px rgba(0,0,0,0.15)', zIndex: 99, display: 'flex', alignItems: 'center', gap: '10px', fontWeight: '500', fontSize: '14px' }}>
+        <div style={{ position: 'fixed', bottom: '20px', left: '16px', right: '16px', maxWidth: '400px', margin: '0 auto', backgroundColor: '#065f46', color: 'white', padding: '12px 16px', borderRadius: '8px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)', zIndex: 99, display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '500', fontSize: '13px' }}>
           <span>✅</span> {statusMsg}
         </div>
       )}
@@ -326,115 +396,113 @@ export default function App() {
       {/* 3. HERO BANNER & MOTIVE SECTION (Home Tab) */}
       {activeTab === 'home' && (
         <>
-          <section style={{ background: 'radial-gradient(circle at top right, #e0f2fe, #f8fafc 60%)', padding: '64px 24px', borderBottom: '1px solid #e2e8f0' }}>
-            <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '40px', alignItems: 'center' }}>
+          <section style={{ background: 'radial-gradient(circle at top right, #e0f2fe, #f8fafc 60%)', borderBottom: '1px solid #e2e8f0' }}>
+            <div className="responsive-hero" style={{ maxWidth: '1280px', margin: '0 auto', padding: '48px 20px' }}>
               <div>
-                <div style={{ display: 'inline-block', backgroundColor: '#dbeafe', color: '#1d4ed8', padding: '4px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', marginBottom: '16px' }}>
-                  Connecting Grassroots Hustle with Modern Tech
+                <div style={{ display: 'inline-block', backgroundColor: '#dbeafe', color: '#1d4ed8', padding: '4px 10px', borderRadius: '16px', fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', marginBottom: '12px' }}>
+                  Grassroots Hustle meets Tech
                 </div>
-                <h1 style={{ fontSize: '44px', fontWeight: '900', lineHeight: '1.15', margin: '0 0 16px', letterSpacing: '-1px', color: '#0f172a' }}>
-                  Bridging the Digital Divide for <span style={{ color: '#2563eb' }}>Self-Help Groups & Micro-Entrepreneurs</span>
+                <h1 className="hero-title" style={{ fontSize: '38px', fontWeight: '900', lineHeight: '1.2', margin: '0 0 14px', letterSpacing: '-0.5px', color: '#0f172a' }}>
+                  Bridging the Digital Divide for <span style={{ color: '#2563eb' }}>Self-Help Groups & Micro-Units</span>
                 </h1>
-                <p style={{ fontSize: '17px', color: '#475569', lineHeight: '1.6', margin: '0 0 28px' }}>
-                  Most small-scale creators and women-led SHGs face roadblocks in accepting online UPI payments, listing products on ONDC/GeM, building catalogs, and finding genuine business partners. 
-                  <b> UdyamSetu provides free IT mentors, peer networking, and community troubleshooting</b> to turn local crafts into scalable enterprises.
+                <p style={{ fontSize: '15px', color: '#475569', lineHeight: '1.6', margin: '0 0 24px' }}>
+                  Get free tech mentorship, digital payment setups, and discover business partners without paying expensive digital agency fees.
                 </p>
                 
-                <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                   <button
                     onClick={() => setActiveTab('it-helpdesk')}
-                    style={{ padding: '14px 26px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '10px', fontWeight: '700', fontSize: '15px', cursor: 'pointer', boxShadow: '0 6px 16px rgba(37,99,235,0.3)' }}
+                    style={{ flex: '1 1 auto', minWidth: '160px', padding: '12px 20px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '700', fontSize: '14px', cursor: 'pointer' }}
                   >
                     🚀 Ask for IT Support
                   </button>
                   <button
                     onClick={() => setActiveTab('community')}
-                    style={{ padding: '14px 26px', backgroundColor: '#ffffff', color: '#0f172a', border: '1px solid #cbd5e1', borderRadius: '10px', fontWeight: '700', fontSize: '15px', cursor: 'pointer' }}
+                    style={{ flex: '1 1 auto', minWidth: '160px', padding: '12px 20px', backgroundColor: '#ffffff', color: '#0f172a', border: '1px solid #cbd5e1', borderRadius: '8px', fontWeight: '700', fontSize: '14px', cursor: 'pointer' }}
                   >
-                    🤝 Find Business Collaborators
+                    🤝 Find Partners
                   </button>
                 </div>
               </div>
 
-              {/* Dynamic Feature Card Highlights */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '12px', boxShadow: '0 4px 14px rgba(0,0,0,0.04)', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontSize: '28px', marginBottom: '8px' }}>⚡</div>
-                  <h4 style={{ margin: '0 0 6px', fontSize: '16px' }}>Zero-Cost Tech Help</h4>
-                  <p style={{ margin: 0, fontSize: '13px', color: '#64748b' }}>Post any bottleneck—from UPI QR soundbox errors to website domain setup.</p>
+              <div className="feature-grid-2">
+                <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontSize: '24px', marginBottom: '6px' }}>⚡</div>
+                  <h4 style={{ margin: '0 0 4px', fontSize: '15px' }}>Zero-Cost Tech Help</h4>
+                  <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Post issues from UPI QR soundbox errors to website builds.</p>
                 </div>
-                <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '12px', boxShadow: '0 4px 14px rgba(0,0,0,0.04)', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontSize: '28px', marginBottom: '8px' }}>🌐</div>
-                  <h4 style={{ margin: '0 0 6px', fontSize: '16px' }}>All 12+ Sectors</h4>
-                  <p style={{ margin: 0, fontSize: '13px', color: '#64748b' }}>IT software, artisanal crafts, organic spices, textiles, and local retail.</p>
+                <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontSize: '24px', marginBottom: '6px' }}>🌐</div>
+                  <h4 style={{ margin: '0 0 4px', fontSize: '15px' }}>All 12+ Sectors</h4>
+                  <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Includes IT software, textiles, organic agriculture, and retail.</p>
                 </div>
-                <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '12px', boxShadow: '0 4px 14px rgba(0,0,0,0.04)', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontSize: '28px', marginBottom: '8px' }}>💼</div>
-                  <h4 style={{ margin: '0 0 6px', fontSize: '16px' }}>B2B Matchmaking</h4>
-                  <p style={{ margin: 0, fontSize: '13px', color: '#64748b' }}>Connect with bulk buyers, raw material suppliers, and student mentors.</p>
+                <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontSize: '24px', marginBottom: '6px' }}>💼</div>
+                  <h4 style={{ margin: '0 0 4px', fontSize: '15px' }}>B2B Networking</h4>
+                  <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Connect with bulk buyers, raw material vendors, and student mentors.</p>
                 </div>
-                <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '12px', boxShadow: '0 4px 14px rgba(0,0,0,0.04)', border: '1px solid #e2e8f0' }}>
-                  <div style={{ fontSize: '28px', marginBottom: '8px' }}>🛡️</div>
-                  <h4 style={{ margin: '0 0 6px', fontSize: '16px' }}>Fraud & Scam Safety</h4>
-                  <p style={{ margin: 0, fontSize: '13px', color: '#64748b' }}>Educational toolkits to shield non-tech founders from digital payment frauds.</p>
+                <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontSize: '24px', marginBottom: '6px' }}>🛡️</div>
+                  <h4 style={{ margin: '0 0 4px', fontSize: '15px' }}>Fraud Safety</h4>
+                  <p style={{ margin: 0, fontSize: '12px', color: '#64748b' }}>Educational toolkits shielding non-tech founders from digital scams.</p>
                 </div>
               </div>
             </div>
           </section>
 
           {/* Metric Badges */}
-          <section style={{ backgroundColor: '#ffffff', padding: '36px 24px', borderBottom: '1px solid #e2e8f0' }}>
-            <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', textAlign: 'center' }}>
+          <section style={{ backgroundColor: '#ffffff', padding: '28px 16px', borderBottom: '1px solid #e2e8f0' }}>
+            <div className="stats-grid" style={{ maxWidth: '1280px', margin: '0 auto' }}>
               <div>
-                <div style={{ fontSize: '32px', fontWeight: '900', color: '#2563eb' }}>1,240+</div>
-                <div style={{ fontSize: '14px', color: '#64748b', fontWeight: '500' }}>SHGs & Micro-Units Registered</div>
+                <div style={{ fontSize: '26px', fontWeight: '900', color: '#2563eb' }}>1,240+</div>
+                <div style={{ fontSize: '12px', color: '#64748b' }}>SHGs Registered</div>
               </div>
               <div>
-                <div style={{ fontSize: '32px', fontWeight: '900', color: '#059669' }}>98.4%</div>
-                <div style={{ fontSize: '14px', color: '#64748b', fontWeight: '500' }}>IT Issues Resolved Rapidly</div>
+                <div style={{ fontSize: '26px', fontWeight: '900', color: '#059669' }}>98.4%</div>
+                <div style={{ fontSize: '12px', color: '#64748b' }}>Issues Resolved</div>
               </div>
               <div>
-                <div style={{ fontSize: '32px', fontWeight: '900', color: '#d97706' }}>12+</div>
-                <div style={{ fontSize: '14px', color: '#64748b', fontWeight: '500' }}>Industrial & Tech Domains</div>
+                <div style={{ fontSize: '26px', fontWeight: '900', color: '#d97706' }}>12+</div>
+                <div style={{ fontSize: '12px', color: '#64748b' }}>Domains Covered</div>
               </div>
               <div>
-                <div style={{ fontSize: '32px', fontWeight: '900', color: '#7c3aed' }}>100% Free</div>
-                <div style={{ fontSize: '14px', color: '#64748b', fontWeight: '500' }}>Open Community Initiative</div>
+                <div style={{ fontSize: '26px', fontWeight: '900', color: '#7c3aed' }}>100% Free</div>
+                <div style={{ fontSize: '12px', color: '#64748b' }}>Community Project</div>
               </div>
             </div>
           </section>
 
-          {/* Detailed Motive & User Value Section */}
-          <section style={{ maxWidth: '1280px', margin: '50px auto', padding: '0 24px' }}>
-            <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-              <h2 style={{ fontSize: '30px', fontWeight: '800', margin: '0 0 10px' }}>Why Does This Platform Exist?</h2>
-              <p style={{ color: '#64748b', fontSize: '16px', maxWidth: '700px', margin: '0 auto' }}>
-                Traditional businesses often get left behind in the e-commerce surge because technical agencies charge hefty fees. Here is how UdyamSetu alters that reality:
+          {/* Detailed Motive */}
+          <section style={{ maxWidth: '1280px', margin: '40px auto', padding: '0 16px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+              <h2 style={{ fontSize: '24px', fontWeight: '800', margin: '0 0 8px' }}>Why Does This Platform Exist?</h2>
+              <p style={{ color: '#64748b', fontSize: '14px', maxWidth: '600px', margin: '0 auto' }}>
+                Grassroots businesses deserve simple, cost-free digital tools without high consultancy charges.
               </p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-              <div style={{ backgroundColor: 'white', padding: '28px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
-                <span style={{ fontSize: '32px' }}>🎯</span>
-                <h3 style={{ fontSize: '18px', margin: '14px 0 8px' }}>1. The Problem We Solve</h3>
-                <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.6' }}>
-                  Micro-entrepreneurs often cannot configure merchant gateways, list on Government e-Marketplace (GeM) or ONDC, or generate WhatsApp catalogs on their own, losing out to larger competitors.
+            <div className="cards-grid-3">
+              <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                <span style={{ fontSize: '28px' }}>🎯</span>
+                <h3 style={{ fontSize: '16px', margin: '10px 0 6px' }}>1. The Problem</h3>
+                <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>
+                  Micro-entrepreneurs often cannot configure merchant gateways, list on GeM or ONDC, or generate WhatsApp catalogs independently.
                 </p>
               </div>
 
-              <div style={{ backgroundColor: 'white', padding: '28px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
-                <span style={{ fontSize: '32px' }}>🤝</span>
-                <h3 style={{ fontSize: '18px', margin: '14px 0 8px' }}>2. Collaborative Matchmaking</h3>
-                <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.6' }}>
-                  An IT entrepreneur can build an online presence for a handloom SHG in exchange for bulk corporate gifting or raw materials. Groups can form consortiums to bid for larger orders.
+              <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                <span style={{ fontSize: '28px' }}>🤝</span>
+                <h3 style={{ fontSize: '16px', margin: '10px 0 6px' }}>2. Matchmaking</h3>
+                <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>
+                  An IT volunteer can build a web portfolio for an SHG in exchange for handicrafts, raw supplies, or collaborative business.
                 </p>
               </div>
 
-              <div style={{ backgroundColor: 'white', padding: '28px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
-                <span style={{ fontSize: '32px' }}>📈</span>
-                <h3 style={{ fontSize: '18px', margin: '14px 0 8px' }}>3. Real Grassroots Profit</h3>
-                <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.6' }}>
-                  By cutting out tech middlemen and expensive software licenses, groups retain 100% of their margin, boosting the rural and urban micro-economy directly.
+              <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                <span style={{ fontSize: '28px' }}>📈</span>
+                <h3 style={{ fontSize: '16px', margin: '10px 0 6px' }}>3. Higher Profit Retention</h3>
+                <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>
+                  By cutting out tech middlemen and expensive software licenses, groups retain 100% of their operational margins.
                 </p>
               </div>
             </div>
@@ -442,28 +510,26 @@ export default function App() {
         </>
       )}
 
-      {/* 4. WORKSPACE TABS (HELP REQUESTS, COMMUNITY, TOOLKITS) */}
+      {/* 4. WORKSPACE TABS */}
       {activeTab !== 'home' && (
-        <main style={{ maxWidth: '1280px', margin: '24px auto', padding: '0 24px' }}>
+        <main className="page-padding" style={{ maxWidth: '1280px', margin: '16px auto', padding: '0 20px' }}>
           
-          {/* Universal Search & Sector Filter Bar */}
-          <div style={{ backgroundColor: 'white', padding: '16px 20px', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
-            <div style={{ flex: 1, minWidth: '240px' }}>
-              <input
-                type="text"
-                placeholder="🔍 Search requests, services, IT questions, or SHGs..."
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
-              />
-            </div>
+          {/* Universal Search & Sector Filter */}
+          <div style={{ backgroundColor: 'white', padding: '14px', borderRadius: '10px', border: '1px solid #e2e8f0', marginBottom: '20px', display: 'flex', gap: '12px', flexDirection: 'column' }}>
+            <input
+              type="text"
+              placeholder="🔍 Search requests, queries, or SHGs..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              style={{ width: '100%', padding: '10px 12px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
+            />
             
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '13px', fontWeight: '600', color: '#64748b' }}>Filter by Industry:</span>
+              <span style={{ fontSize: '12px', fontWeight: '600', color: '#64748b', whiteSpace: 'nowrap' }}>Sector:</span>
               <select
                 value={selectedSectorFilter}
                 onChange={e => setSelectedSectorFilter(e.target.value)}
-                style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px', backgroundColor: '#f8fafc', fontWeight: '500' }}
+                style={{ width: '100%', padding: '8px 10px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '13px', backgroundColor: '#f8fafc' }}
               >
                 <option value="All">All Sectors (IT, Handicrafts, Agro, etc.)</option>
                 {BUSINESS_SECTORS.map((sec, i) => (
@@ -475,32 +541,32 @@ export default function App() {
 
           {/* TAB: IT HELPDESK */}
           {activeTab === 'it-helpdesk' && (
-            <div style={{ display: 'grid', gridTemplateColumns: '400px 1fr', gap: '28px', alignItems: 'start' }}>
+            <div className="responsive-grid-split">
               
               {/* Request Form */}
-              <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 14px rgba(0,0,0,0.04)' }}>
-                <h3 style={{ margin: '0 0 6px', fontSize: '18px', fontWeight: '700' }}>Post Technical Problem</h3>
-                <p style={{ margin: '0 0 16px', fontSize: '13px', color: '#64748b' }}>Get free tech assistance from IT mentors and digital volunteers.</p>
+              <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                <h3 style={{ margin: '0 0 4px', fontSize: '17px', fontWeight: '700' }}>Post Technical Problem</h3>
+                <p style={{ margin: '0 0 14px', fontSize: '12px', color: '#64748b' }}>Free support from IT mentors and digital volunteers.</p>
 
-                <form onSubmit={handleTicketSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <form onSubmit={handleTicketSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569', textTransform: 'uppercase' }}>Subject / Problem Title</label>
+                    <label style={{ fontSize: '11px', fontWeight: '700', color: '#475569' }}>PROBLEM TITLE</label>
                     <input
                       type="text"
-                      placeholder="e.g., QR Code payment failing repeatedly"
+                      placeholder="e.g., QR Code payment failing"
                       value={ticketForm.title}
                       onChange={e => setTicketForm({ ...ticketForm, title: e.target.value })}
                       required
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px' }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569', textTransform: 'uppercase' }}>Category of Assistance</label>
+                    <label style={{ fontSize: '11px', fontWeight: '700', color: '#475569' }}>CATEGORY</label>
                     <select
                       value={ticketForm.category}
                       onChange={e => setTicketForm({ ...ticketForm, category: e.target.value })}
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px' }}
                     >
                       {HELP_CATEGORIES.map((cat, i) => (
                         <option key={i} value={cat}>{cat}</option>
@@ -509,74 +575,68 @@ export default function App() {
                   </div>
 
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569', textTransform: 'uppercase' }}>Detailed Explanation</label>
+                    <label style={{ fontSize: '11px', fontWeight: '700', color: '#475569' }}>EXPLANATION</label>
                     <textarea
                       rows="3"
-                      placeholder="Provide details about what device, app, or setup is having an issue..."
+                      placeholder="Details regarding your device or app issue..."
                       value={ticketForm.description}
                       onChange={e => setTicketForm({ ...ticketForm, description: e.target.value })}
                       required
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px' }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569', textTransform: 'uppercase' }}>Contact WhatsApp / Phone</label>
+                    <label style={{ fontSize: '11px', fontWeight: '700', color: '#475569' }}>CONTACT NUMBER</label>
                     <input
                       type="text"
                       placeholder="+91 98765 43210"
                       value={ticketForm.contact}
                       onChange={e => setTicketForm({ ...ticketForm, contact: e.target.value })}
                       required
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px' }}
                     />
                   </div>
 
                   <button
                     type="submit"
-                    style={{ padding: '12px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '700', cursor: 'pointer', marginTop: '8px', boxShadow: '0 4px 10px rgba(37,99,235,0.2)' }}
+                    style={{ padding: '12px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '6px', fontWeight: '700', cursor: 'pointer', marginTop: '4px' }}
                   >
                     {user ? 'Submit IT Request' : 'Login to Post Request'}
                   </button>
                 </form>
               </div>
 
-              {/* Live Ticket Feed */}
+              {/* Feed */}
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                  <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '700' }}>Active Technical Queries ({filteredTickets.length})</h3>
-                  <span style={{ fontSize: '13px', color: '#64748b' }}>Updated in real-time</span>
-                </div>
+                <h3 style={{ margin: '0 0 12px', fontSize: '16px', fontWeight: '700' }}>Live Help Requests ({filteredTickets.length})</h3>
 
                 {filteredTickets.length === 0 ? (
-                  <div style={{ backgroundColor: 'white', padding: '40px', textAlign: 'center', borderRadius: '12px', border: '1px dashed #cbd5e1', color: '#64748b' }}>
-                    No tickets found matching your query or filter. Submit the first one!
+                  <div style={{ backgroundColor: 'white', padding: '30px', textAlign: 'center', borderRadius: '10px', border: '1px dashed #cbd5e1', color: '#64748b', fontSize: '13px' }}>
+                    No matching requests found.
                   </div>
                 ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     {filteredTickets.map((t, idx) => (
-                      <div key={idx} style={{ backgroundColor: 'white', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0', borderLeft: '4px solid #2563eb', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px' }}>
-                          <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '700', color: '#0f172a' }}>{t.title}</h4>
-                          <span style={{ fontSize: '11px', backgroundColor: '#eff6ff', color: '#1d4ed8', padding: '4px 10px', borderRadius: '20px', fontWeight: '700', whiteSpace: 'nowrap' }}>
+                      <div key={idx} style={{ backgroundColor: 'white', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0', borderLeft: '4px solid #2563eb' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
+                          <h4 style={{ margin: 0, fontSize: '15px', fontWeight: '700' }}>{t.title}</h4>
+                          <span style={{ fontSize: '10px', backgroundColor: '#eff6ff', color: '#1d4ed8', padding: '2px 8px', borderRadius: '12px', fontWeight: '700' }}>
                             {t.category}
                           </span>
                         </div>
-                        <p style={{ fontSize: '14px', color: '#475569', margin: '10px 0 14px', lineHeight: '1.5' }}>{t.description}</p>
+                        <p style={{ fontSize: '13px', color: '#475569', margin: '8px 0 12px', lineHeight: '1.4' }}>{t.description}</p>
                         
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '10px', borderTop: '1px solid #f1f5f9', fontSize: '12px', color: '#64748b' }}>
-                          <div>
-                            👤 Posted by <b>{t.author || 'Anonymous'}</b>
-                            {t.businessType && <span> • 🏷️ <i>{t.businessType}</i></span>}
-                          </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px solid #f1f5f9', fontSize: '11px', color: '#64748b', flexWrap: 'wrap', gap: '6px' }}>
+                          <div>By <b>{t.author || 'Anonymous'}</b> {t.businessType && `• ${t.businessType}`}</div>
                           {t.contact && (
                             <a
                               href={`https://wa.me/${t.contact.replace(/[^0-9]/g, '')}`}
                               target="_blank"
                               rel="noreferrer"
-                              style={{ display: 'flex', alignItems: 'center', gap: '4px', backgroundColor: '#dcfce7', color: '#166534', padding: '4px 10px', borderRadius: '6px', textDecoration: 'none', fontWeight: '600' }}
+                              style={{ backgroundColor: '#dcfce7', color: '#166534', padding: '4px 8px', borderRadius: '6px', textDecoration: 'none', fontWeight: '600' }}
                             >
-                              💬 WhatsApp {t.contact}
+                              💬 WhatsApp
                             </a>
                           )}
                         </div>
@@ -588,34 +648,34 @@ export default function App() {
             </div>
           )}
 
-          {/* TAB: COMMUNITY & MATCHMAKING */}
+          {/* TAB: MATCHMAKING */}
           {activeTab === 'community' && (
-            <div style={{ display: 'grid', gridTemplateColumns: '400px 1fr', gap: '28px', alignItems: 'start' }}>
+            <div className="responsive-grid-split">
               
-              {/* Post Collaboration Opportunity */}
-              <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 4px 14px rgba(0,0,0,0.04)' }}>
-                <h3 style={{ margin: '0 0 6px', fontSize: '18px', fontWeight: '700' }}>Find Partners & Network</h3>
-                <p style={{ margin: '0 0 16px', fontSize: '13px', color: '#64748b' }}>Offer your products, seek tech partners, or find bulk buyers.</p>
+              {/* Post Form */}
+              <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                <h3 style={{ margin: '0 0 4px', fontSize: '17px', fontWeight: '700' }}>Find Partners & Network</h3>
+                <p style={{ margin: '0 0 14px', fontSize: '12px', color: '#64748b' }}>Publish your proposal to the live community.</p>
 
-                <form onSubmit={handlePostSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <form onSubmit={handlePostSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569', textTransform: 'uppercase' }}>SHG / Startup / Business Name</label>
+                    <label style={{ fontSize: '11px', fontWeight: '700', color: '#475569' }}>SHG / STARTUP NAME</label>
                     <input
                       type="text"
-                      placeholder="e.g., RuralTech Innovations / Mahila Shilp"
+                      placeholder="e.g., Mahila Weavers"
                       value={postForm.shgName}
                       onChange={e => setPostForm({ ...postForm, shgName: e.target.value })}
                       required
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px' }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569', textTransform: 'uppercase' }}>Sector (Including IT)</label>
+                    <label style={{ fontSize: '11px', fontWeight: '700', color: '#475569' }}>SECTOR</label>
                     <select
                       value={postForm.businessType}
                       onChange={e => setPostForm({ ...postForm, businessType: e.target.value })}
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px' }}
                     >
                       {BUSINESS_SECTORS.map((sec, i) => (
                         <option key={i} value={sec}>{sec}</option>
@@ -624,90 +684,86 @@ export default function App() {
                   </div>
 
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569', textTransform: 'uppercase' }}>I Am Looking For</label>
+                    <label style={{ fontSize: '11px', fontWeight: '700', color: '#475569' }}>LOOKING FOR</label>
                     <select
                       value={postForm.lookingFor}
                       onChange={e => setPostForm({ ...postForm, lookingFor: e.target.value })}
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px' }}
                     >
                       <option>Looking for: IT & Website Building Partner</option>
                       <option>Looking for: Co-Founders & Business Partners</option>
                       <option>Looking for: Mentors & Technical Advisors</option>
                       <option>Looking for: Bulk Institutional Buyers</option>
-                      <option>Looking for: Raw Material / Component Suppliers</option>
-                      <option>Looking for: Packaging & Transport Logistics</option>
+                      <option>Looking for: Raw Material Suppliers</option>
                     </select>
                   </div>
 
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569', textTransform: 'uppercase' }}>Proposal / Pitch</label>
+                    <label style={{ fontSize: '11px', fontWeight: '700', color: '#475569' }}>PROPOSAL</label>
                     <textarea
                       rows="3"
-                      placeholder="Describe what your group produces, your capacity, and how others can collaborate..."
+                      placeholder="Describe your requirement or production capacity..."
                       value={postForm.message}
                       onChange={e => setPostForm({ ...postForm, message: e.target.value })}
                       required
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px' }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569', textTransform: 'uppercase' }}>Contact WhatsApp / Phone</label>
+                    <label style={{ fontSize: '11px', fontWeight: '700', color: '#475569' }}>CONTACT NUMBER</label>
                     <input
                       type="text"
                       placeholder="+91 98765 43210"
                       value={postForm.contact}
                       onChange={e => setPostForm({ ...postForm, contact: e.target.value })}
                       required
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px' }}
                     />
                   </div>
 
                   <button
                     type="submit"
-                    style={{ padding: '12px', backgroundColor: '#059669', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '700', cursor: 'pointer', marginTop: '8px', boxShadow: '0 4px 10px rgba(5,150,105,0.2)' }}
+                    style={{ padding: '12px', backgroundColor: '#059669', color: 'white', border: 'none', borderRadius: '6px', fontWeight: '700', cursor: 'pointer', marginTop: '4px' }}
                   >
-                    {user ? 'Publish to Community Feed' : 'Login to Post Opportunity'}
+                    {user ? 'Publish Proposal' : 'Login to Post'}
                   </button>
                 </form>
               </div>
 
-              {/* Live Collaboration Feed */}
+              {/* Collaboration Feed */}
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                  <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '700' }}>Collaborative Propositions ({filteredPosts.length})</h3>
-                  <span style={{ fontSize: '13px', color: '#64748b' }}>Connect directly via WhatsApp</span>
-                </div>
+                <h3 style={{ margin: '0 0 12px', fontSize: '16px', fontWeight: '700' }}>Propositions ({filteredPosts.length})</h3>
 
                 {filteredPosts.length === 0 ? (
-                  <div style={{ backgroundColor: 'white', padding: '40px', textAlign: 'center', borderRadius: '12px', border: '1px dashed #cbd5e1', color: '#64748b' }}>
-                    No collaboration posts found. Publish an offer on the left!
+                  <div style={{ backgroundColor: 'white', padding: '30px', textAlign: 'center', borderRadius: '10px', border: '1px dashed #cbd5e1', color: '#64748b', fontSize: '13px' }}>
+                    No collaboration posts found.
                   </div>
                 ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     {filteredPosts.map((p, idx) => (
-                      <div key={idx} style={{ backgroundColor: 'white', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0', borderLeft: '4px solid #10b981', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px' }}>
+                      <div key={idx} style={{ backgroundColor: 'white', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0', borderLeft: '4px solid #10b981' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
                           <div>
-                            <h4 style={{ margin: '0 0 4px', fontSize: '17px', fontWeight: '700', color: '#0f172a' }}>{p.shgName}</h4>
-                            <span style={{ fontSize: '12px', color: '#64748b' }}>Sector: <b>{p.businessType}</b></span>
+                            <h4 style={{ margin: '0 0 2px', fontSize: '15px', fontWeight: '700' }}>{p.shgName}</h4>
+                            <span style={{ fontSize: '11px', color: '#64748b' }}>{p.businessType}</span>
                           </div>
-                          <span style={{ fontSize: '11px', backgroundColor: '#ecfdf5', color: '#047857', padding: '4px 10px', borderRadius: '20px', fontWeight: '700' }}>
+                          <span style={{ fontSize: '10px', backgroundColor: '#ecfdf5', color: '#047857', padding: '2px 8px', borderRadius: '12px', fontWeight: '700' }}>
                             {p.lookingFor}
                           </span>
                         </div>
-                        <p style={{ fontSize: '14px', color: '#334155', margin: '12px 0 16px', lineHeight: '1.5' }}>"{p.message}"</p>
+                        <p style={{ fontSize: '13px', color: '#334155', margin: '8px 0 12px', lineHeight: '1.4' }}>"{p.message}"</p>
                         
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '10px', borderTop: '1px solid #f1f5f9', fontSize: '12px', color: '#64748b' }}>
-                          <div>👤 Rep: <b>{p.author || 'Member'}</b></div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '8px', borderTop: '1px solid #f1f5f9', fontSize: '11px', color: '#64748b', flexWrap: 'wrap', gap: '6px' }}>
+                          <div>By <b>{p.author || 'Member'}</b></div>
                           {p.contact && (
                             <a
                               href={`https://wa.me/${p.contact.replace(/[^0-9]/g, '')}`}
                               target="_blank"
                               rel="noreferrer"
-                              style={{ display: 'flex', alignItems: 'center', gap: '4px', backgroundColor: '#dcfce7', color: '#166534', padding: '5px 12px', borderRadius: '6px', textDecoration: 'none', fontWeight: '700' }}
+                              style={{ backgroundColor: '#dcfce7', color: '#166534', padding: '4px 8px', borderRadius: '6px', textDecoration: 'none', fontWeight: '600' }}
                             >
-                              📲 WhatsApp {p.contact}
+                              📲 WhatsApp
                             </a>
                           )}
                         </div>
@@ -719,55 +775,31 @@ export default function App() {
             </div>
           )}
 
-          {/* TAB: DIGITAL TOOLKITS */}
+          {/* TAB: TOOLKITS */}
           {activeTab === 'toolkits' && (
             <div>
-              <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                <h2 style={{ fontSize: '26px', fontWeight: '800', margin: '0 0 8px' }}>Free Digital Literacy & Enablement Toolkits</h2>
-                <p style={{ color: '#64748b', fontSize: '15px' }}>Simple, jargon-free guides to help micro-businesses automate and grow online.</p>
+              <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                <h2 style={{ fontSize: '22px', fontWeight: '800', margin: '0 0 6px' }}>Digital Toolkits</h2>
+                <p style={{ color: '#64748b', fontSize: '13px' }}>Practical, non-technical setup guides for micro-businesses.</p>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>💳</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>UPI Merchant Soundbox Setup</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>How to link SHG joint accounts with Google Pay/PhonePe Business, generate physical QR standees, and avoid voice confirmation fraud.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
+              <div className="cards-grid-3">
+                <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontSize: '26px', marginBottom: '8px' }}>💳</div>
+                  <h4 style={{ margin: '0 0 6px', fontSize: '15px' }}>UPI Soundbox Setup</h4>
+                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.4' }}>Link joint SHG bank accounts with Google Pay or PhonePe Business standees.</p>
                 </div>
 
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>🛍️</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>ONDC & GeM Portal Onboarding</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Direct access to government procurement and India's open e-commerce network with zero heavy commission cuts.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
+                <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontSize: '26px', marginBottom: '8px' }}>🛍️</div>
+                  <h4 style={{ margin: '0 0 6px', fontSize: '15px' }}>ONDC / GeM Onboarding</h4>
+                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.4' }}>Government procurement and open e-commerce listing with 0% extra commissions.</p>
                 </div>
 
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>📱</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>WhatsApp Business Product Catalogs</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Create instant photo catalogs with fixed pricing and automated quick-replies to capture direct customer orders on chat.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
-                </div>
-
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>📊</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>Daily Bookkeeping & Inventory Sheet</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Free Google Sheets and mobile ledger templates to track daily raw material purchases, sales profits, and group dividend shares.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Download Template →</span>
-                </div>
-
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>🛡️</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>Cyber Fraud & Scam Defense</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Learn how to identify fake customer payment screenshots, phishing SMS links, and prevent unauthorized account access.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
-                </div>
-
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>🎨</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>Free Social Media Branding with AI</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Step-by-step tutorial on making professional packaging banners, labels, and festival marketing posters using Canva & free AI tools.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
+                <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                  <div style={{ fontSize: '26px', marginBottom: '8px' }}>📱</div>
+                  <h4 style={{ margin: '0 0 6px', fontSize: '15px' }}>WhatsApp Catalogs</h4>
+                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.4' }}>Create instant photo catalogs with fixed rates and automated quick responses.</p>
                 </div>
               </div>
             </div>
@@ -776,46 +808,46 @@ export default function App() {
         </main>
       )}
 
-      {/* 5. USER PROFILE DRAWER / MODAL */}
+      {/* MODAL: PROFILE */}
       {showProfileModal && user && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(4px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 100 }}>
-          <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '16px', width: '460px', maxWidth: '90%', position: 'relative', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(3px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 100, padding: '16px' }}>
+          <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', width: '100%', maxWidth: '440px', position: 'relative' }}>
             <button
               onClick={() => setShowProfileModal(false)}
-              style={{ position: 'absolute', right: '20px', top: '20px', border: 'none', background: '#f1f5f9', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', fontWeight: 'bold' }}
+              style={{ position: 'absolute', right: '16px', top: '16px', border: 'none', background: '#f1f5f9', width: '28px', height: '28px', borderRadius: '50%', cursor: 'pointer', fontWeight: 'bold' }}
             >
               ✕
             </button>
-            <h3 style={{ margin: '0 0 4px', fontSize: '20px', fontWeight: '800' }}>Entrepreneur Profile</h3>
-            <p style={{ margin: '0 0 20px', fontSize: '13px', color: '#64748b' }}>Update your operational sector and primary help needed.</p>
+            <h3 style={{ margin: '0 0 4px', fontSize: '18px', fontWeight: '800' }}>Your Profile</h3>
+            <p style={{ margin: '0 0 16px', fontSize: '12px', color: '#64748b' }}>Edit your contact and business details.</p>
 
-            <form onSubmit={handleUpdateProfile} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <form onSubmit={handleUpdateProfile} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div>
-                <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>FULL NAME</label>
+                <label style={{ fontSize: '11px', fontWeight: '700' }}>NAME</label>
                 <input
                   type="text"
                   value={profileForm.name}
                   onChange={e => setProfileForm({ ...profileForm, name: e.target.value })}
-                  style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '2px' }}
                 />
               </div>
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>CONTACT PHONE / WHATSAPP</label>
+                <label style={{ fontSize: '11px', fontWeight: '700' }}>PHONE NUMBER</label>
                 <input
                   type="text"
                   value={profileForm.phone}
                   onChange={e => setProfileForm({ ...profileForm, phone: e.target.value })}
-                  style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '2px' }}
                 />
               </div>
 
               <div>
-                <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>OPERATIONAL SECTOR</label>
+                <label style={{ fontSize: '11px', fontWeight: '700' }}>OPERATIONAL SECTOR</label>
                 <select
                   value={profileForm.businessType}
                   onChange={e => setProfileForm({ ...profileForm, businessType: e.target.value })}
-                  style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '2px' }}
                 >
                   {BUSINESS_SECTORS.map((sec, i) => (
                     <option key={i} value={sec}>{sec}</option>
@@ -823,156 +855,97 @@ export default function App() {
                 </select>
               </div>
 
-              <div>
-                <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>PRIMARY IT ASSISTANCE NEEDED</label>
-                <select
-                  value={profileForm.helpNeeded}
-                  onChange={e => setProfileForm({ ...profileForm, helpNeeded: e.target.value })}
-                  style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
-                >
-                  {HELP_CATEGORIES.map((cat, i) => (
-                    <option key={i} value={cat}>{cat}</option>
-                  ))}
-                </select>
-              </div>
-
               <button
                 type="submit"
-                style={{ padding: '12px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '700', cursor: 'pointer', marginTop: '8px' }}
+                style={{ padding: '10px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '6px', fontWeight: '700', cursor: 'pointer', marginTop: '8px' }}
               >
-                Save Profile Changes
+                Save Changes
               </button>
             </form>
           </div>
         </div>
       )}
 
-      {/* 6. AUTH MODAL (LOGIN / SIGNUP) */}
+      {/* MODAL: AUTH */}
       {showAuthModal && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(4px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 100 }}>
-          <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '16px', width: '440px', maxWidth: '90%', position: 'relative', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', maxHeight: '90vh', overflowY: 'auto' }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(3px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 100, padding: '16px' }}>
+          <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', width: '100%', maxWidth: '420px', maxHeight: '90vh', overflowY: 'auto', position: 'relative' }}>
             <button
               onClick={() => setShowAuthModal(false)}
-              style={{ position: 'absolute', right: '20px', top: '20px', border: 'none', background: '#f1f5f9', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', fontWeight: 'bold' }}
+              style={{ position: 'absolute', right: '16px', top: '16px', border: 'none', background: '#f1f5f9', width: '28px', height: '28px', borderRadius: '50%', cursor: 'pointer', fontWeight: 'bold' }}
             >
               ✕
             </button>
             
-            <h3 style={{ margin: '0 0 6px', fontSize: '22px', fontWeight: '800' }}>
-              {authMode === 'login' ? 'Welcome to UdyamSetu' : 'Register Your Enterprise'}
+            <h3 style={{ margin: '0 0 4px', fontSize: '18px', fontWeight: '800' }}>
+              {authMode === 'login' ? 'Sign In' : 'Join UdyamSetu'}
             </h3>
-            <p style={{ margin: '0 0 16px', fontSize: '13px', color: '#64748b' }}>
-              {authMode === 'login' ? 'Access your IT tickets and community pitches.' : 'Join the growing network of digitally empowered entrepreneurs.'}
-            </p>
 
             {authError && (
-              <div style={{ backgroundColor: '#fee2e2', color: '#991b1b', padding: '10px', borderRadius: '8px', fontSize: '13px', marginBottom: '14px' }}>
+              <div style={{ backgroundColor: '#fee2e2', color: '#991b1b', padding: '8px', borderRadius: '6px', fontSize: '12px', margin: '8px 0' }}>
                 {authError}
               </div>
             )}
 
-            <form onSubmit={handleAuth} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <form onSubmit={handleAuth} style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px' }}>
               {authMode === 'signup' && (
                 <>
-                  <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>FULL NAME</label>
-                    <input
-                      type="text"
-                      placeholder="e.g., Rajesh Sharma / Sunita Devi"
-                      value={authForm.name}
-                      onChange={e => setAuthForm({ ...authForm, name: e.target.value })}
-                      required
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>WHATSAPP / PHONE NUMBER</label>
-                    <input
-                      type="text"
-                      placeholder="+91 98765 43210"
-                      value={authForm.phone}
-                      onChange={e => setAuthForm({ ...authForm, phone: e.target.value })}
-                      required
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>YOUR ROLE</label>
-                    <select
-                      value={authForm.role}
-                      onChange={e => setAuthForm({ ...authForm, role: e.target.value })}
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
-                    >
-                      <option value="Micro-Entrepreneur">Micro-Entrepreneur (Individual Founder)</option>
-                      <option value="SHG Member">Self-Help Group (SHG) Leader / Member</option>
-                      <option value="IT Volunteer">IT Support Volunteer / Mentor</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>PRIMARY SECTOR (Includes IT)</label>
-                    <select
-                      value={authForm.businessType}
-                      onChange={e => setAuthForm({ ...authForm, businessType: e.target.value })}
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
-                    >
-                      {BUSINESS_SECTORS.map((sec, i) => (
-                        <option key={i} value={sec}>{sec}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>WHAT IT ASSISTANCE DO YOU NEED MOST?</label>
-                    <select
-                      value={authForm.helpNeeded}
-                      onChange={e => setAuthForm({ ...authForm, helpNeeded: e.target.value })}
-                      style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
-                    >
-                      {HELP_CATEGORIES.map((cat, i) => (
-                        <option key={i} value={cat}>{cat}</option>
-                      ))}
-                    </select>
-                  </div>
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    value={authForm.name}
+                    onChange={e => setAuthForm({ ...authForm, name: e.target.value })}
+                    required
+                    style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+                  />
+                  <input
+                    type="text"
+                    placeholder="WhatsApp / Contact Number"
+                    value={authForm.phone}
+                    onChange={e => setAuthForm({ ...authForm, phone: e.target.value })}
+                    required
+                    style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+                  />
+                  <select
+                    value={authForm.role}
+                    onChange={e => setAuthForm({ ...authForm, role: e.target.value })}
+                    style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+                  >
+                    <option value="Micro-Entrepreneur">Micro-Entrepreneur</option>
+                    <option value="SHG Member">SHG Leader / Member</option>
+                    <option value="IT Volunteer">IT Volunteer / Mentor</option>
+                  </select>
                 </>
               )}
 
-              <div>
-                <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>EMAIL ADDRESS</label>
-                <input
-                  type="email"
-                  placeholder="name@example.com"
-                  value={authForm.email}
-                  onChange={e => setAuthForm({ ...authForm, email: e.target.value })}
-                  required
-                  style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
-                />
-              </div>
+              <input
+                type="email"
+                placeholder="Email Address"
+                value={authForm.email}
+                onChange={e => setAuthForm({ ...authForm, email: e.target.value })}
+                required
+                style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+              />
 
-              <div>
-                <label style={{ fontSize: '12px', fontWeight: '700', color: '#475569' }}>PASSWORD</label>
-                <input
-                  type="password"
-                  placeholder="••••••••"
-                  value={authForm.password}
-                  onChange={e => setAuthForm({ ...authForm, password: e.target.value })}
-                  required
-                  style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #cbd5e1', marginTop: '4px', boxSizing: 'border-box' }}
-                />
-              </div>
+              <input
+                type="password"
+                placeholder="Password"
+                value={authForm.password}
+                onChange={e => setAuthForm({ ...authForm, password: e.target.value })}
+                required
+                style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+              />
 
               <button
                 type="submit"
-                style={{ padding: '12px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '700', cursor: 'pointer', marginTop: '8px', fontSize: '14px' }}
+                style={{ padding: '10px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '6px', fontWeight: '700', cursor: 'pointer', marginTop: '6px' }}
               >
-                {authMode === 'login' ? 'Sign In' : 'Create Free Account'}
+                {authMode === 'login' ? 'Sign In' : 'Create Account'}
               </button>
             </form>
 
-            <div style={{ textAlign: 'center', marginTop: '16px', fontSize: '13px', color: '#64748b' }}>
-              {authMode === 'login' ? "Don't have an account yet? " : "Already registered? "}
+            <div style={{ textAlign: 'center', marginTop: '14px', fontSize: '12px', color: '#64748b' }}>
+              {authMode === 'login' ? "Don't have an account? " : "Already have an account? "}
               <button
                 onClick={() => { setAuthError(''); setAuthMode(authMode === 'login' ? 'signup' : 'login'); }}
                 style={{ background: 'none', border: 'none', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}
@@ -984,17 +957,10 @@ export default function App() {
         </div>
       )}
 
-      {/* 7. FOOTER */}
-      <footer style={{ backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0', padding: '36px 24px', marginTop: '60px', color: '#64748b', fontSize: '13px' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
-          <div>
-            <b style={{ color: '#0f172a' }}>UdyamSetu: IT Support for SHGs & Micro-Entrepreneurs</b>
-            <div>Empowering grassroots innovation through open-source digital technology.</div>
-          </div>
-          <div>
-            College Community Engagement Project (CEP) • 100% Free & Open-Access
-          </div>
-        </div>
+      {/* FOOTER */}
+      <footer style={{ backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0', padding: '24px 16px', marginTop: '40px', color: '#64748b', fontSize: '12px', textAlign: 'center' }}>
+        <b style={{ color: '#0f172a' }}>UdyamSetu: IT Support for SHGs & Micro-Entrepreneurs</b>
+        <div style={{ marginTop: '4px' }}>Free Open-Access College Community Engagement Project</div>
       </footer>
     </div>
   );
