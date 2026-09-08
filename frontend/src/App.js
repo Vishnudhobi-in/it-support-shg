@@ -2,6 +2,51 @@ import React, { useState, useEffect } from 'react';
 
 const API_BASE = "https://it-support-shg-api.onrender.com/api";
 
+const TOOLKIT_CARDS = [
+  {
+    title: "UPI Merchant Soundbox Setup",
+    icon: "💳",
+    summary: "How to link SHG joint accounts with merchant apps, generate QR standees, and avoid voice confirmation fraud.",
+    readTime: "6 min read",
+    link: "/toolkits/upi-merchant-soundbox.html"
+  },
+  {
+    title: "ONDC & GeM Portal Onboarding",
+    icon: "🛍️",
+    summary: "Direct access to government procurement and India's open e-commerce network with zero heavy commission cuts.",
+    readTime: "8 min read",
+    link: "/toolkits/ondc-gem-onboarding.html"
+  },
+  {
+    title: "WhatsApp Business Product Catalogs",
+    icon: "📱",
+    summary: "Create instant photo catalogs with fixed pricing and automated quick-replies to capture direct customer orders on chat.",
+    readTime: "5 min read",
+    link: "/toolkits/whatsapp-business-catalogs.html"
+  },
+  {
+    title: "Daily Bookkeeping & Inventory Sheet",
+    icon: "📊",
+    summary: "Ledger and spreadsheet templates to track daily raw material purchases, sales profits, and member dividend shares.",
+    readTime: "7 min read",
+    link: "/toolkits/daily-bookkeeping-inventory.html"
+  },
+  {
+    title: "Cyber Fraud & Scam Defense",
+    icon: "🛡️",
+    summary: "Learn how to identify fake customer payment screenshots, phishing SMS links, and prevent unauthorized account access.",
+    readTime: "6 min read",
+    link: "/toolkits/cyber-fraud-scam-defense.html"
+  },
+  {
+    title: "Free Social Media Branding with AI",
+    icon: "🎨",
+    summary: "Step-by-step guide on making packaging labels, stickers, and festival marketing posters using Canva & free AI tools.",
+    readTime: "6 min read",
+    link: "/toolkits/social-media-branding-ai.html"
+  }
+];
+
 // 1. Comprehensive Business Sectors (All 12 Options Restored)
 const BUSINESS_SECTORS = [
   "Information Technology (IT) & Software Services",
@@ -809,58 +854,67 @@ export default function App() {
           )}
 
           {/* TAB: DIGITAL TOOLKITS (All 6 Restored) */}
-          {activeTab === 'toolkits' && (
-            <div>
-              <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                <h2 style={{ fontSize: '26px', fontWeight: '800', margin: '0 0 8px' }}>Free Digital Literacy & Enablement Toolkits</h2>
-                <p style={{ color: '#64748b', fontSize: '15px' }}>Simple, jargon-free guides to help micro-businesses automate and grow online.</p>
-              </div>
+{/* TAB: DIGITAL TOOLKITS */}
+{activeTab === 'toolkits' && (
+  <div>
+    <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+      <h2 style={{ fontSize: '26px', fontWeight: '800', margin: '0 0 8px' }}>
+        Free Digital Literacy & Enablement Toolkits
+      </h2>
+      <p style={{ color: '#64748b', fontSize: '15px' }}>
+        Simple, jargon-free guides to help micro-businesses automate and grow online.
+      </p>
+    </div>
 
-              <div className="toolkits-deck">
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>💳</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>UPI Merchant Soundbox Setup</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>How to link SHG joint accounts with Google Pay/PhonePe Business, generate physical QR standees, and avoid voice confirmation fraud.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
-                </div>
+    <div className="toolkits-deck">
+      {TOOLKIT_CARDS.map((card, idx) => (
+        <div 
+          key={idx} 
+          style={{ 
+            backgroundColor: 'white', 
+            padding: '24px', 
+            borderRadius: '12px', 
+            border: '1px solid #e2e8f0', 
+            boxShadow: '0 2px 6px rgba(0,0,0,0.02)', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            justifyContent: 'space-between' 
+          }}
+        >
+          <div>
+            <div style={{ fontSize: '30px', marginBottom: '10px' }}>{card.icon}</div>
+            <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>{card.title}</h4>
+            <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5', marginBottom: '16px' }}>
+              {card.summary}
+            </p>
+          </div>
 
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>🛍️</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>ONDC & GeM Portal Onboarding</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Direct access to government procurement and India's open e-commerce network with zero heavy commission cuts.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
-                </div>
-
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>📱</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>WhatsApp Business Product Catalogs</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Create instant photo catalogs with fixed pricing and automated quick-replies to capture direct customer orders on chat.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
-                </div>
-
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>📊</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>Daily Bookkeeping & Inventory Sheet</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Free Google Sheets and mobile ledger templates to track daily raw material purchases, sales profits, and group dividend shares.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Download Template →</span>
-                </div>
-
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>🛡️</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>Cyber Fraud & Scam Defense</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Learn how to identify fake customer payment screenshots, phishing SMS links, and prevent unauthorized account access.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
-                </div>
-
-                <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                  <div style={{ fontSize: '30px', marginBottom: '10px' }}>🎨</div>
-                  <h4 style={{ margin: '0 0 8px', fontSize: '17px' }}>Free Social Media Branding with AI</h4>
-                  <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>Step-by-step tutorial on making professional packaging banners, labels, and festival marketing posters using Canva & free AI tools.</p>
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: '700', cursor: 'pointer' }}>Read Guide →</span>
-                </div>
-              </div>
-            </div>
-          )}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '12px', borderTop: '1px solid #f1f5f9' }}>
+            <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '600' }}>
+              ⏱️ {card.readTime}
+            </span>
+            <a
+              href={card.link}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                textDecoration: 'none',
+                color: '#2563eb',
+                fontWeight: '700',
+                fontSize: '13px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}
+            >
+              Open Guide ↗
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
 
         </main>
       )}
