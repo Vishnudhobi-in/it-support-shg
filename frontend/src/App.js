@@ -8,42 +8,42 @@ const TOOLKIT_CARDS = [
     icon: "💳",
     summary: "How to link SHG joint accounts with merchant apps, generate QR standees, and avoid voice confirmation fraud.",
     readTime: "6 min read",
-    link: "/toolkits/upi-merchant-soundbox.html"
+    link: "/toolkits/UPI Merchant Soundbox Setup.html"
   },
   {
     title: "ONDC & GeM Portal Onboarding",
     icon: "🛍️",
     summary: "Direct access to government procurement and India's open e-commerce network with zero heavy commission cuts.",
     readTime: "8 min read",
-    link: "/toolkits/ondc-gem-onboarding.html"
+    link: "/toolkits/ONDC & GeM Portal Onboarding.html"
   },
   {
     title: "WhatsApp Business Product Catalogs",
     icon: "📱",
     summary: "Create instant photo catalogs with fixed pricing and automated quick-replies to capture direct customer orders on chat.",
     readTime: "5 min read",
-    link: "/toolkits/whatsapp-business-catalogs.html"
+    link: "/toolkits/WhatsApp Business Product Catalogs.html"
   },
   {
     title: "Daily Bookkeeping & Inventory Sheet",
     icon: "📊",
     summary: "Ledger and spreadsheet templates to track daily raw material purchases, sales profits, and member dividend shares.",
     readTime: "7 min read",
-    link: "/toolkits/daily-bookkeeping-inventory.html"
+    link: "/toolkits/Daily Bookkeeping & Inventory Sheet.html"
   },
   {
     title: "Cyber Fraud & Scam Defense",
     icon: "🛡️",
     summary: "Learn how to identify fake customer payment screenshots, phishing SMS links, and prevent unauthorized account access.",
     readTime: "6 min read",
-    link: "/toolkits/cyber-fraud-scam-defense.html"
+    link: "/toolkits/Cyber Fraud & Scam Defense.html"
   },
   {
     title: "Free Social Media Branding with AI",
     icon: "🎨",
     summary: "Step-by-step guide on making packaging labels, stickers, and festival marketing posters using Canva & free AI tools.",
     readTime: "6 min read",
-    link: "/toolkits/social-media-branding-ai.html"
+    link: "/toolkits/Free Social Media Branding with AI.html"
   }
 ];
 
