@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://it-support-shg-api.onrender.com/api";
 
 // 1. Comprehensive Business Sectors (including IT & Digital services)
 const BUSINESS_SECTORS = [
