@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daily Bookkeeping &amp; Inventory Sheet | UdyamSetu</title>
+
+    <style>
+
+        /* =========================
+           GLOBAL STYLES
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #222222;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .navbar {
+            width: 100%;
+            background: #0d6efd;
+            color: #ffffff;
+
+            padding: 16px 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.75;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            background: #0d6efd;
+            color: #ffffff;
+
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+
+            margin-bottom: 20px;
+            padding: 7px 18px;
+
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 850px;
+            margin: auto;
+
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================== */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+
+            margin: 45px auto;
+        }
+
+
+        /* =========================
+           SECTION
+        ========================== */
+
+        .section {
+            background: #ffffff;
+
+            padding: 38px;
+            margin-bottom: 30px;
+
+            border-radius: 12px;
+            border: 1px solid #e1e1e1;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .section h2 {
+            color: #0d6efd;
+
+            margin-bottom: 20px;
+
+            font-size: 29px;
+
+            border-left: 5px solid #0d6efd;
+            padding-left: 14px;
+        }
+
+        .section h3 {
+            color: #333333;
+
+            margin-top: 28px;
+            margin-bottom: 12px;
+
+            font-size: 21px;
+        }
+
+        .section p {
+            margin-bottom: 16px;
+            color: #444444;
+        }
+
+
+        /* =========================
+           INFO BOX
+        ========================== */
+
+        .info-box {
+            background: #f5f9ff;
+
+            border-left: 5px solid #0d6efd;
+
+            padding: 20px;
+            margin: 25px 0;
+
+            border-radius: 7px;
+        }
+
+        .info-box strong {
+            color: #0d6efd;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================== */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 20px;
+
+            margin-top: 25px;
+        }
+
+        .card {
+            background: #ffffff;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            border: 1px solid #dddddd;
+
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+
+            border-color: #0d6efd;
+
+            box-shadow:
+                0 7px 20px
+                rgba(13, 110, 253, 0.12);
+        }
+
+        .card-number {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            background: #0d6efd;
+            color: #ffffff;
+
+            font-weight: bold;
+
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            color: #0d6efd;
+
+            margin: 0 0 8px;
+
+            font-size: 18px;
+        }
+
+        .card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================== */
+
+        .table-wrapper {
+            width: 100%;
+
+            overflow-x: auto;
+
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 700px;
+        }
+
+        th,
+        td {
+            padding: 13px;
+
+            border: 1px solid #dddddd;
+
+            text-align: left;
+        }
+
+        th {
+            background: #0d6efd;
+            color: #ffffff;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #f2f7ff;
+        }
+
+
+        /* =========================
+           CALCULATION BOX
+        ========================== */
+
+        .calculation {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 20px;
+
+            margin-top: 25px;
+        }
+
+        .calc-box {
+            padding: 22px;
+
+            border-radius: 10px;
+
+            border: 2px solid #0d6efd;
+
+            text-align: center;
+
+            background: #ffffff;
+        }
+
+        .calc-box span {
+            display: block;
+
+            color: #555555;
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+        .calc-box strong {
+            font-size: 24px;
+            color: #0d6efd;
+        }
+
+
+        /* =========================
+           CHECKLIST
+        ========================== */
+
+        .checklist {
+            list-style: none;
+
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 13px 15px;
+
+            margin-bottom: 10px;
+
+            border: 1px solid #e2e2e2;
+
+            border-radius: 7px;
+
+            background: #ffffff;
+        }
+
+        .checklist li::before {
+            content: "✓";
+
+            color: #0d6efd;
+
+            font-weight: bold;
+
+            margin-right: 12px;
+        }
+
+
+        /* =========================
+           WARNING
+        ========================== */
+
+        .warning-box {
+            background: #fffdf5;
+
+            border-left: 5px solid #ffc107;
+
+            padding: 20px;
+
+            margin: 25px 0;
+
+            border-radius: 7px;
+
+            border-top: 1px solid #eeeeee;
+            border-right: 1px solid #eeeeee;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .warning-box strong {
+            color: #9a7400;
+        }
+
+
+        /* =========================
+           WORKFLOW
+        ========================== */
+
+        .workflow {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 30px;
+        }
+
+        .workflow-step {
+            background: #ffffff;
+
+            color: #0d6efd;
+
+            padding: 16px 20px;
+
+            border-radius: 9px;
+
+            border: 2px solid #0d6efd;
+
+            font-weight: 600;
+
+            text-align: center;
+
+            min-width: 150px;
+        }
+
+        .arrow {
+            font-size: 24px;
+
+            color: #0d6efd;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           HIGHLIGHT
+        ========================== */
+
+        .highlight {
+            color: #0d6efd;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           CTA
+        ========================== */
+
+        .cta {
+            background: #0d6efd;
+
+            color: #ffffff;
+
+            padding: 40px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .cta h2 {
+            color: #ffffff;
+
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            color: #ffffff;
+
+            max-width: 750px;
+
+            margin: auto auto 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+
+            background: #ffffff;
+
+            color: #0d6efd;
+
+            padding: 12px 25px;
+
+            border-radius: 6px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 15px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #0d6efd;
+
+            color: #ffffff;
+
+            text-align: center;
+
+            padding: 28px 20px;
+
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 4px 0;
+
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           MOBILE RESPONSIVE
+        ========================== */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                padding: 14px 5%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 30px auto;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .section h2 {
+                font-size: 24px;
+            }
+
+            .section h3 {
+                font-size: 19px;
+            }
+
+            .workflow {
+                flex-direction: column;
+            }
+
+            .workflow-step {
+                width: 100%;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+
+            .cta {
+                padding: 30px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            UdyamSetu
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#introduction">
+                    Introduction
+                </a>
+            </li>
+
+            <li>
+                <a href="#bookkeeping">
+                    Bookkeeping
+                </a>
+            </li>
+
+            <li>
+                <a href="#inventory">
+                    Inventory
+                </a>
+            </li>
+
+            <li>
+                <a href="#profit">
+                    Profit
+                </a>
+            </li>
+
+            <li>
+                <a href="#security">
+                    Best Practices
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <header class="hero">
+
+        <div class="hero-badge">
+            Digital Financial Management
+        </div>
+
+        <h1>
+            Daily Bookkeeping &amp; Inventory Sheet
+        </h1>
+
+        <p>
+            Simple digital templates to record daily purchases, sales,
+            inventory, expenses, profits and group dividend shares in an
+            organized manner.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="container">
+
+
+        <!-- INTRODUCTION -->
+
+        <section class="section" id="introduction">
+
+            <h2>
+                1. Introduction
+            </h2>
+
+            <p>
+                Maintaining accurate financial and inventory records is
+                essential for Self-Help Groups (SHGs), small businesses,
+                artisans and entrepreneurs.
+            </p>
+
+            <p>
+                A daily bookkeeping and inventory sheet provides a structured
+                method for recording raw material purchases, product sales,
+                business expenses, stock levels and profits.
+            </p>
+
+            <div class="info-box">
+
+                <strong>Objective:</strong>
+
+                Help SHGs and small businesses maintain simple, consistent
+                and transparent financial records using digital spreadsheets
+                or mobile ledger tools.
+
+            </div>
+
+        </section>
+
+
+        <!-- BENEFITS -->
+
+        <section class="section">
+
+            <h2>
+                2. Key Benefits
+            </h2>
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <div class="card-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Daily Records
+                    </h3>
+
+                    <p>
+                        Maintain a regular record of purchases, sales,
+                        expenses and other business transactions.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Inventory Control
+                    </h3>
+
+                    <p>
+                        Track available raw materials, finished products and
+                        stock movement.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Profit Tracking
+                    </h3>
+
+                    <p>
+                        Compare sales revenue with business costs to
+                        understand approximate operating profit.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Transparency
+                    </h3>
+
+                    <p>
+                        Organized records can make financial discussions and
+                        group-level reporting easier.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-number">
+                        05
+                    </div>
+
+                    <h3>
+                        Easy Monitoring
+                    </h3>
+
+                    <p>
+                        Review business performance regularly and identify
+                        unusual changes in expenses or sales.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-number">
+                        06
+                    </div>
+
+                    <h3>
+                        Digital Access
+                    </h3>
+
+                    <p>
+                        Spreadsheet and mobile ledger formats can make
+                        records easier to maintain and access.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOOKKEEPING -->
+
+        <section class="section" id="bookkeeping">
+
+            <h2>
+                3. Daily Bookkeeping Sheet
+            </h2>
+
+            <p>
+                The daily bookkeeping sheet should capture the major financial
+                transactions of the business.
+            </p>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Transaction
+                            </th>
+
+                            <th>
+                                Category
+                            </th>
+
+                            <th>
+                                Quantity
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Payment Mode
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                DD/MM/YYYY
+                            </td>
+
+                            <td>
+                                Raw Material Purchase
+                            </td>
+
+                            <td>
+                                Purchase
+                            </td>
+
+                            <td>
+                                10
+                            </td>
+
+                            <td>
+                                ₹2,000
+                            </td>
+
+                            <td>
+                                UPI / Cash
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                DD/MM/YYYY
+                            </td>
+
+                            <td>
+                                Product Sale
+                            </td>
+
+                            <td>
+                                Sales
+                            </td>
+
+                            <td>
+                                5
+                            </td>
+
+                            <td>
+                                ₹3,500
+                            </td>
+
+                            <td>
+                                UPI
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                DD/MM/YYYY
+                            </td>
+
+                            <td>
+                                Transport Expense
+                            </td>
+
+                            <td>
+                                Expense
+                            </td>
+
+                            <td>
+                                1
+                            </td>
+
+                            <td>
+                                ₹300
+                            </td>
+
+                            <td>
+                                Cash
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- INVENTORY -->
+
+        <section class="section" id="inventory">
+
+            <h2>
+                4. Inventory Tracking Sheet
+            </h2>
+
+            <p>
+                Inventory records help the group understand how much raw
+                material and finished stock is available.
+            </p>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Item
+                            </th>
+
+                            <th>
+                                Opening Stock
+                            </th>
+
+                            <th>
+                                Purchased
+                            </th>
+
+                            <th>
+                                Used / Sold
+                            </th>
+
+                            <th>
+                                Closing Stock
+                            </th>
+
+                            <th>
+                                Reorder Level
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Raw Material A
+                            </td>
+
+                            <td>
+                                50
+                            </td>
+
+                            <td>
+                                20
+                            </td>
+
+                            <td>
+                                30
+                            </td>
+
+                            <td>
+                                40
+                            </td>
+
+                            <td>
+                                15
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Product A
+                            </td>
+
+                            <td>
+                                25
+                            </td>
+
+                            <td>
+                                10
+                            </td>
+
+                            <td>
+                                15
+                            </td>
+
+                            <td>
+                                20
+                            </td>
+
+                            <td>
+                                5
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="warning-box">
+
+                <strong>Best Practice:</strong>
+
+                Update inventory records whenever stock is purchased, used,
+                sold, damaged or otherwise adjusted. The exact method of
+                valuation should be selected according to the business's
+                accounting needs.
+
+            </div>
+
+        </section>
+
+
+        <!-- PROFIT -->
+
+        <section class="section" id="profit">
+
+            <h2>
+                5. Daily Sales &amp; Profit Tracking
+            </h2>
+
+            <p>
+                Recording revenue and relevant business costs helps the group
+                understand its financial performance.
+            </p>
+
+            <div class="calculation">
+
+
+                <div class="calc-box">
+
+                    <span>
+                        Total Sales
+                    </span>
+
+                    <strong>
+                        ₹10,000
+                    </strong>
+
+                </div>
+
+
+                <div class="calc-box">
+
+                    <span>
+                        Total Costs
+                    </span>
+
+                    <strong>
+                        ₹6,500
+                    </strong>
+
+                </div>
+
+
+                <div class="calc-box">
+
+                    <span>
+                        Approx. Surplus
+                    </span>
+
+                    <strong>
+                        ₹3,500
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <strong>Basic Calculation:</strong>
+
+                Approximate surplus =
+                Sales Revenue − Relevant Business Costs
+
+                <br><br>
+
+                This is a simple management calculation and should not be
+                treated as a substitute for formal accounting or tax advice.
+
+            </div>
+
+        </section>
+
+
+        <!-- DIVIDEND -->
+
+        <section class="section">
+
+            <h2>
+                6. Group Dividend / Share Record
+            </h2>
+
+            <p>
+                Where an SHG or group distributes an approved surplus among
+                members, a separate record can help document the amount
+                allocated to each member according to the group's applicable
+                rules and decisions.
+            </p>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Member
+                            </th>
+
+                            <th>
+                                Contribution / Share Basis
+                            </th>
+
+                            <th>
+                                Eligible Share
+                            </th>
+
+                            <th>
+                                Amount Allocated
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Member 1
+                            </td>
+
+                            <td>
+                                As per group records
+                            </td>
+
+                            <td>
+                                Share A
+                            </td>
+
+                            <td>
+                                ₹1,000
+                            </td>
+
+                            <td>
+                                DD/MM/YYYY
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Member 2
+                            </td>
+
+                            <td>
+                                As per group records
+                            </td>
+
+                            <td>
+                                Share B
+                            </td>
+
+                            <td>
+                                ₹1,000
+                            </td>
+
+                            <td>
+                                DD/MM/YYYY
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="warning-box">
+
+                <strong>Important:</strong>
+
+                Dividend or surplus-sharing calculations should follow the
+                group's governing rules, approved decisions and applicable
+                financial requirements.
+
+            </div>
+
+        </section>
+
+
+        <!-- WORKFLOW -->
+
+        <section class="section">
+
+            <h2>
+                7. Daily Record-Keeping Workflow
+            </h2>
+
+            <div class="workflow">
+
+                <div class="workflow-step">
+                    Purchase
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div class="workflow-step">
+                    Inventory Update
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div class="workflow-step">
+                    Sales Entry
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div class="workflow-step">
+                    Expense Entry
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div class="workflow-step">
+                    Profit Review
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+                <div class="workflow-step">
+                    Monthly Summary
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DIGITAL TOOLS -->
+
+        <section class="section">
+
+            <h2>
+                8. Digital Bookkeeping Tools
+            </h2>
+
+            <p>
+                Businesses can choose a record-keeping method based on their
+                technical comfort, business size and reporting requirements.
+            </p>
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <div class="card-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Google Sheets
+                    </h3>
+
+                    <p>
+                        Useful for structured tables, formulas, shared records
+                        and basic financial tracking.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Mobile Ledger
+                    </h3>
+
+                    <p>
+                        Mobile bookkeeping applications can help record
+                        transactions while managing day-to-day business
+                        activities.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Spreadsheet Template
+                    </h3>
+
+                    <p>
+                        A customized spreadsheet can be designed around the
+                        group's specific products, expenses and reporting
+                        requirements.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BEST PRACTICES -->
+
+        <section class="section" id="security">
+
+            <h2>
+                9. Best Practices
+            </h2>
+
+            <ul class="checklist">
+
+                <li>
+                    Record transactions as soon as reasonably possible.
+                </li>
+
+                <li>
+                    Keep purchase bills, invoices and relevant receipts.
+                </li>
+
+                <li>
+                    Update inventory after significant stock movements.
+                </li>
+
+                <li>
+                    Keep sales and expense entries separate.
+                </li>
+
+                <li>
+                    Review records regularly for errors or duplicate entries.
+                </li>
+
+                <li>
+                    Restrict editing access to authorised group members.
+                </li>
+
+                <li>
+                    Keep digital records backed up appropriately.
+                </li>
+
+                <li>
+                    Reconcile recorded payments with actual bank or cash
+                    balances regularly.
+                </li>
+
+                <li>
+                    Keep member-share or surplus-allocation records
+                    transparent and properly documented.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- IMPLEMENTATION -->
+
+        <section class="section">
+
+            <h2>
+                10. Implementation Checklist
+            </h2>
+
+            <ul class="checklist">
+
+                <li>
+                    Select a bookkeeping method.
+                </li>
+
+                <li>
+                    Create a daily transaction sheet.
+                </li>
+
+                <li>
+                    Create an inventory tracking sheet.
+                </li>
+
+                <li>
+                    Record raw material purchases.
+                </li>
+
+                <li>
+                    Record daily sales.
+                </li>
+
+                <li>
+                    Record business expenses.
+                </li>
+
+                <li>
+                    Update stock levels.
+                </li>
+
+                <li>
+                    Review daily and monthly totals.
+                </li>
+
+                <li>
+                    Maintain approved group share or surplus records.
+                </li>
+
+                <li>
+                    Back up important records regularly.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- CONCLUSION -->
+
+        <section class="section">
+
+            <h2>
+                11. Conclusion
+            </h2>
+
+            <p>
+                Daily bookkeeping and inventory management provide SHGs and
+                small businesses with a structured way to monitor their
+                financial and operational activities.
+            </p>
+
+            <p>
+                Using simple spreadsheet or mobile ledger templates can make
+                it easier to record purchases, sales, expenses, inventory
+                movements and group-level financial information.
+            </p>
+
+            <p class="highlight">
+                Consistent record keeping improves transparency, supports
+                better business decisions and provides a stronger foundation
+                for sustainable digital business management.
+            </p>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <section class="cta">
+
+            <h2>
+                Organize Your Business Records
+            </h2>
+
+            <p>
+                Track purchases, sales, inventory and financial performance
+                with a simple and structured digital bookkeeping system.
+            </p>
+
+            <a href="#bookkeeping" class="cta-button">
+                Start Bookkeeping
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            <strong>UdyamSetu</strong>
+        </p>
+
+        <p>
+            Digital Empowerment for SHGs &amp; Small Businesses
+        </p>
+
+        <p>
+            © 2026 UdyamSetu. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+</html>

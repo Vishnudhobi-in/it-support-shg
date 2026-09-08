@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Merchant Soundbox Setup | UdyamSetu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #0d6efd;
+            color: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #eaf3ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #dbeaff;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: #0d6efd;
+            color: white;
+            padding: 80px 7%;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 18px;
+            color: #edf5ff;
+        }
+
+        /* ================= GENERAL ================= */
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        section {
+            padding: 65px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            color: #0d6efd;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 760px;
+            margin: auto;
+        }
+
+        .intro-text {
+            max-width: 950px;
+            margin: auto;
+            text-align: center;
+            font-size: 17px;
+            color: #555;
+        }
+
+        /* ================= CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e4e9ef;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background: #eaf3ff;
+            color: #0d6efd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* ================= INFO BOX ================= */
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 5px solid #0d6efd;
+            padding: 22px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .info-box h3 {
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #4d5d70;
+        }
+
+        .warning-box {
+            background: #fff8e6;
+            border-left: 5px solid #f0ad00;
+            padding: 22px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box h3 {
+            color: #946900;
+            margin-bottom: 8px;
+        }
+
+        .warning-box p {
+            color: #66501f;
+        }
+
+        .danger-box {
+            background: #fff1f1;
+            border-left: 5px solid #dc3545;
+            padding: 22px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .danger-box h3 {
+            color: #b02a37;
+            margin-bottom: 8px;
+        }
+
+        /* ================= STEPS ================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 25px 18px;
+            border: 1px solid #e2e7ed;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #0d6efd;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .step h3 {
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* ================= SOUND BOX ================= */
+
+        .soundbox-demo {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 35px;
+            background: #f8fbff;
+            border: 1px solid #dce8f7;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .soundbox-icon {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .soundbox-demo h3 {
+            color: #0d6efd;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .payment-alert {
+            background: white;
+            border: 1px solid #dbe3ec;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        .payment-alert strong {
+            color: #198754;
+        }
+
+        /* ================= ACCOUNT LINKING ================= */
+
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .account-card {
+            border: 1px solid #e1e6eb;
+            padding: 28px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+        }
+
+        .account-card h3 {
+            color: #0d6efd;
+            margin-bottom: 12px;
+        }
+
+        .account-card ol {
+            padding-left: 20px;
+        }
+
+        .account-card li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* ================= QR ================= */
+
+        .qr-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .qr-placeholder {
+            width: 260px;
+            height: 260px;
+            margin: auto;
+            border: 8px solid #111;
+            background:
+                linear-gradient(45deg, #111 25%, transparent 25%),
+                linear-gradient(-45deg, #111 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #111 75%),
+                linear-gradient(-45deg, transparent 75%, #111 75%);
+            background-size: 32px 32px;
+            background-position: 0 0, 0 16px, 16px -16px, -16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-center {
+            background: white;
+            padding: 12px;
+            font-weight: bold;
+            color: #0d6efd;
+            border-radius: 5px;
+        }
+
+        .qr-content h3 {
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+
+        .qr-content ul {
+            padding-left: 20px;
+        }
+
+        .qr-content li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* ================= FRAUD PREVENTION ================= */
+
+        .fraud-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .fraud-item {
+            padding: 22px;
+            border-radius: 10px;
+            border: 1px solid #e1e6eb;
+            background: white;
+        }
+
+        .fraud-item h3 {
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        .fraud-item p {
+            color: #666;
+        }
+
+        .wrong {
+            border-left: 5px solid #dc3545;
+        }
+
+        .right {
+            border-left: 5px solid #198754;
+        }
+
+        /* ================= TABLE ================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #0d6efd;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 15px;
+            border-bottom: 1px solid #e5e5e5;
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: #f8fbff;
+        }
+
+        /* ================= CHECKLIST ================= */
+
+        .checklist {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .check-item {
+            background: #f8fbff;
+            border: 1px solid #e2ebf7;
+            padding: 17px;
+            border-radius: 8px;
+        }
+
+        .check-item strong {
+            color: #0d6efd;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            background: #0d6efd;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 750px;
+            margin: auto;
+            color: #eaf3ff;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #084298;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #dceaff;
+            margin: 4px 0;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .account-grid,
+            .qr-section,
+            .fraud-grid,
+            .checklist {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .cards,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            section {
+                padding: 45px 0;
+            }
+
+            .qr-placeholder {
+                width: 220px;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Udyam<span>Setu</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#soundbox">Soundbox</a></li>
+            <li><a href="#account">Account</a></li>
+            <li><a href="#qr">QR Setup</a></li>
+            <li><a href="#security">Security</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <header class="hero">
+
+        <div class="hero-badge">
+            Digital Payments &amp; Merchant Awareness
+        </div>
+
+        <h1>UPI Merchant Soundbox Setup</h1>
+
+        <p>
+            Learn how SHGs and small businesses can organize UPI merchant
+            payments, use physical QR standees and verify payment alerts
+            safely while reducing the risk of fake payment confirmation fraud.
+        </p>
+
+    </header>
+
+
+    <!-- ================= INTRODUCTION ================= -->
+
+    <section id="introduction">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Introduction</h2>
+
+                <p>
+                    Make digital payment collection easier while maintaining
+                    strong payment verification practices.
+                </p>
+
+            </div>
+
+            <p class="intro-text">
+
+                Unified Payments Interface (UPI) has become an important
+                payment method for many small businesses, entrepreneurs and
+                Self-Help Groups (SHGs). A merchant payment setup can include
+                a business UPI account, a physical QR code and, where supported,
+                a merchant soundbox that announces incoming payments.
+
+                <br><br>
+
+                For an SHG using a joint or group-operated bank account,
+                the exact onboarding and authorization requirements depend
+                on the bank and payment provider. The account holder or
+                authorized representative should complete the merchant
+                onboarding process using the provider's official process.
+
+            </p>
+
+            <div class="info-box">
+
+                <h3>Key Principle</h3>
+
+                <p>
+                    A soundbox or payment notification is useful for confirming
+                    incoming payments, but staff should still follow the
+                    merchant application's transaction record or bank account
+                    when a payment needs formal verification.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BENEFITS ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Benefits of a Merchant Payment Setup</h2>
+
+                <p>
+                    A structured digital payment system can make collection
+                    and verification easier for a group.
+                </p>
+
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-icon">🔊</div>
+
+                    <h3>Payment Alerts</h3>
+
+                    <p>
+                        A compatible merchant soundbox can provide an audible
+                        notification when a payment is received.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">📱</div>
+
+                    <h3>Digital Records</h3>
+
+                    <p>
+                        Merchant applications can help businesses review
+                        transaction details and maintain payment records.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">🔳</div>
+
+                    <h3>Physical QR</h3>
+
+                    <p>
+                        A clearly displayed QR standee gives customers a
+                        convenient way to initiate UPI payments.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">👥</div>
+
+                    <h3>Group Transparency</h3>
+
+                    <p>
+                        Clear payment records can support better internal
+                        bookkeeping and group-level monitoring.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">⚡</div>
+
+                    <h3>Faster Confirmation</h3>
+
+                    <p>
+                        Immediate payment notifications can help staff
+                        identify incoming transactions more quickly.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">🛡️</div>
+
+                    <h3>Fraud Awareness</h3>
+
+                    <p>
+                        A proper verification process helps reduce reliance
+                        on customer-provided screenshots or claims.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SOUNDBOX ================= -->
+
+    <section id="soundbox">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>What Is a UPI Merchant Soundbox?</h2>
+
+                <p>
+                    A soundbox is a merchant-facing device designed to provide
+                    audible payment notifications.
+                </p>
+
+            </div>
+
+            <div class="soundbox-demo">
+
+                <div class="soundbox-icon">
+                    🔊
+                </div>
+
+                <h3>Merchant Payment Soundbox</h3>
+
+                <p>
+                    When a supported merchant payment is successfully received,
+                    the device may provide an audible confirmation.
+                </p>
+
+                <div class="payment-alert">
+
+                    <strong>✓ Payment Received</strong>
+
+                    <br><br>
+
+                    Example:
+
+                    <strong>₹500</strong>
+
+                    <br>
+
+                    <small>
+                        Always verify transaction details through the official
+                        merchant or bank records when required.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ACCOUNT LINKING ================= -->
+
+    <section id="account">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Linking an SHG Bank Account</h2>
+
+                <p>
+                    Merchant onboarding should be completed by the authorized
+                    account holder or representative.
+                </p>
+
+            </div>
+
+            <div class="account-grid">
+
+                <div class="account-card">
+
+                    <h3>Google Pay for Business</h3>
+
+                    <ol>
+
+                        <li>
+                            Use the official Google Pay merchant onboarding process.
+                        </li>
+
+                        <li>
+                            Provide the required business and bank information.
+                        </li>
+
+                        <li>
+                            Complete the applicable verification process.
+                        </li>
+
+                        <li>
+                            Link the eligible bank account as instructed by
+                            the service.
+                        </li>
+
+                        <li>
+                            Configure available merchant payment features.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+
+                <div class="account-card">
+
+                    <h3>PhonePe Business</h3>
+
+                    <ol>
+
+                        <li>
+                            Start merchant registration through the official
+                            PhonePe Business process.
+                        </li>
+
+                        <li>
+                            Provide the required business and bank details.
+                        </li>
+
+                        <li>
+                            Complete merchant verification and authorization.
+                        </li>
+
+                        <li>
+                            Link the eligible bank account according to
+                            provider requirements.
+                        </li>
+
+                        <li>
+                            Configure available QR and payment notification
+                            options.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+            <div class="warning-box">
+
+                <h3>SHG Account Verification</h3>
+
+                <p>
+                    Joint or group bank accounts can have specific authorization
+                    and onboarding requirements. Before registering a merchant
+                    account, confirm with the bank and payment provider that
+                    the SHG's account structure is eligible and determine who
+                    is authorized to operate the merchant account.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QR SETUP ================= -->
+
+    <section id="qr">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Physical QR Standees</h2>
+
+                <p>
+                    A physical QR standee can make the merchant's UPI payment
+                    option visible at the point of sale.
+                </p>
+
+            </div>
+
+            <div class="qr-section">
+
+                <div>
+
+                    <div class="qr-placeholder">
+
+                        <div class="qr-center">
+                            UPI QR
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qr-content">
+
+                    <h3>How to Set Up a QR Standee</h3>
+
+                    <ul>
+
+                        <li>
+                            Obtain the merchant QR through the official
+                            payment provider.
+                        </li>
+
+                        <li>
+                            Confirm that the displayed merchant name and
+                            payment details are correct.
+                        </li>
+
+                        <li>
+                            Print or use the provider-supplied QR standee.
+                        </li>
+
+                        <li>
+                            Place it in a clean and easily visible location.
+                        </li>
+
+                        <li>
+                            Ensure the QR is not damaged, covered or replaced
+                            by an unauthorized sticker.
+                        </li>
+
+                        <li>
+                            Periodically inspect the QR to ensure it still
+                            belongs to the intended merchant account.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <h3>QR Safety Tip</h3>
+
+                <p>
+                    Customers should verify the merchant name shown by their
+                    payment application before confirming a payment. Merchants
+                    should also periodically inspect physical QR standees for
+                    tampering or replacement.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PAYMENT WORKFLOW ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Recommended Payment Workflow</h2>
+
+                <p>
+                    Follow a consistent process from customer order to payment confirmation.
+                </p>
+
+            </div>
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">1</div>
+
+                    <h3>Customer Orders</h3>
+
+                    <p>
+                        Confirm the product, quantity and final amount.
+                    </p>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="step-number">2</div>
+
+                    <h3>Customer Pays</h3>
+
+                    <p>
+                        Customer scans the official merchant QR and completes
+                        the UPI payment.
+                    </p>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="step-number">3</div>
+
+                    <h3>Verify Payment</h3>
+
+                    <p>
+                        Check the soundbox notification and, when necessary,
+                        verify the transaction in the merchant application
+                        or bank account.
+                    </p>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="step-number">4</div>
+
+                    <h3>Complete Order</h3>
+
+                    <p>
+                        After payment verification, provide the product or
+                        service and record the transaction.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FRAUD PREVENTION ================= -->
+
+    <section id="security">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Avoid Voice Confirmation Fraud</h2>
+
+                <p>
+                    Never rely only on what a customer says or shows you about a payment.
+                </p>
+
+            </div>
+
+            <div class="fraud-grid">
+
+                <div class="fraud-item wrong">
+
+                    <h3>✕ Unsafe Practice</h3>
+
+                    <p>
+                        A customer says, "The payment is completed,"
+                        and shows a screenshot. The seller immediately
+                        gives the product without checking the merchant
+                        account.
+                    </p>
+
+                </div>
+
+                <div class="fraud-item right">
+
+                    <h3>✓ Safer Practice</h3>
+
+                    <p>
+                        Listen for the merchant notification and verify
+                        the transaction through the official merchant
+                        application or bank records before completing
+                        the order.
+                    </p>
+
+                </div>
+
+                <div class="fraud-item wrong">
+
+                    <h3>✕ Unsafe Practice</h3>
+
+                    <p>
+                        Accepting a voice recording or a customer's verbal
+                        claim that money has been transferred.
+                    </p>
+
+                </div>
+
+                <div class="fraud-item right">
+
+                    <h3>✓ Safer Practice</h3>
+
+                    <p>
+                        Treat your own official transaction record as the
+                        source of truth for payment verification.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="danger-box">
+
+                <h3>Important: Never Share Payment Credentials</h3>
+
+                <p>
+                    Never share a UPI PIN, OTP, password or other authentication
+                    information with customers or unknown callers. A merchant
+                    should not need to disclose confidential authentication
+                    information to receive a payment.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FRAUD COMPARISON ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Payment Verification: Do's &amp; Don'ts</h2>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Do</th>
+                            <th>Don't</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Verify payment through your merchant application.</td>
+                            <td>Do not rely only on a screenshot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Check that the amount matches the order.</td>
+                            <td>Do not accept an incorrect amount without confirmation.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Use the official merchant QR.</td>
+                            <td>Do not use an unknown or suspicious QR code.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Keep your UPI PIN confidential.</td>
+                            <td>Do not share your UPI PIN with anyone.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Check transaction records when needed.</td>
+                            <td>Do not rely solely on verbal confirmation.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Report suspicious activity through official channels.</td>
+                            <td>Do not continue a suspicious transaction just because a customer is creating urgency.</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SHG MANAGEMENT ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>SHG Payment Management Practices</h2>
+
+                <p>
+                    A group can create simple internal procedures to improve transparency.
+                </p>
+
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-icon">👤</div>
+
+                    <h3>Assign Responsibility</h3>
+
+                    <p>
+                        Clearly define which authorized member is responsible
+                        for monitoring merchant payments.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">📒</div>
+
+                    <h3>Maintain Records</h3>
+
+                    <p>
+                        Record sales and payment details consistently in the
+                        group's bookkeeping system.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">🔎</div>
+
+                    <h3>Review Transactions</h3>
+
+                    <p>
+                        Periodically compare sales records with the merchant
+                        account transaction history.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">🔐</div>
+
+                    <h3>Protect Access</h3>
+
+                    <p>
+                        Limit access to merchant accounts and devices to
+                        authorized group members.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">📢</div>
+
+                    <h3>Train Members</h3>
+
+                    <p>
+                        Teach members how to identify fake screenshots,
+                        suspicious requests and unauthorized QR changes.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">⚠️</div>
+
+                    <h3>Escalate Suspicious Activity</h3>
+
+                    <p>
+                        If a transaction appears suspicious, pause the
+                        transaction and use official support channels.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CHECKLIST ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>UPI Merchant Setup Checklist</h2>
+
+                <p>
+                    Use this checklist when setting up or reviewing a merchant payment system.
+                </p>
+
+            </div>
+
+            <div class="checklist">
+
+                <div class="check-item">
+                    <strong>✓</strong> Confirm the SHG bank account and authorized representative.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Complete merchant onboarding through the official provider.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Confirm the displayed merchant name.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Obtain and display the official merchant QR.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Place the QR standee where customers can easily see it.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Check that the QR has not been tampered with.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Use a compatible merchant soundbox where appropriate.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Verify important payments through official transaction records.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Never share OTPs, UPI PINs or passwords.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Train all members involved in receiving payments.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONCLUSION ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Conclusion</h2>
+
+            </div>
+
+            <p class="intro-text">
+
+                A well-organized UPI merchant setup can help SHGs and small
+                businesses accept digital payments efficiently. Physical QR
+                standees provide customers with a convenient payment option,
+                while compatible merchant soundboxes can provide useful
+                audible payment notifications.
+
+                <br><br>
+
+                However, technology should always be combined with good
+                verification practices. Screenshots, SMS messages and verbal
+                claims should not replace checking the merchant's own
+                transaction records.
+
+                <br><br>
+
+                <strong>
+                    Verify the payment. Protect the account. Complete the order.
+                </strong>
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="cta">
+
+        <h2>Make Digital Payments Safer</h2>
+
+        <p>
+            UdyamSetu helps entrepreneurs and Self-Help Groups build practical
+            digital skills for safer, more transparent and efficient business operations.
+        </p>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 UdyamSetu | UPI Merchant Soundbox Setup
+        </p>
+
+        <p>
+            Digital empowerment for entrepreneurs, SHGs and small businesses.
+        </p>
+
+    </footer>
+
+</body>
+</html>

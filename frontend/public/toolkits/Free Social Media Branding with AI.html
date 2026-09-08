@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Social Media Branding with AI | UdyamSetu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #0d6efd;
+            color: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #eaf3ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #dbeaff;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: #0d6efd;
+            color: white;
+            padding: 80px 7%;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 18px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 18px;
+            color: #edf5ff;
+        }
+
+        /* ================= GENERAL ================= */
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        section {
+            padding: 65px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            color: #0d6efd;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 760px;
+            margin: auto;
+        }
+
+        .intro-text {
+            max-width: 950px;
+            margin: auto;
+            text-align: center;
+            font-size: 17px;
+            color: #555;
+        }
+
+        /* ================= CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e4e9ef;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background: #eaf3ff;
+            color: #0d6efd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* ================= INFO BOX ================= */
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 5px solid #0d6efd;
+            padding: 22px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .info-box h3 {
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #4d5d70;
+        }
+
+        .warning-box {
+            background: #fff8e6;
+            border-left: 5px solid #f0ad00;
+            padding: 22px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box h3 {
+            color: #946900;
+            margin-bottom: 8px;
+        }
+
+        .warning-box p {
+            color: #66501f;
+        }
+
+        /* ================= STEPS ================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 25px 18px;
+            border: 1px solid #e2e7ed;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #0d6efd;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .step h3 {
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* ================= TOOL BOX ================= */
+
+        .tool-box {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .tool {
+            border: 1px solid #dfe7f0;
+            border-radius: 12px;
+            padding: 28px;
+            background: white;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+        }
+
+        .tool h3 {
+            color: #0d6efd;
+            margin-bottom: 12px;
+        }
+
+        .tool p {
+            color: #666;
+        }
+
+        .tool-tag {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 6px 12px;
+            background: #eaf3ff;
+            color: #0d6efd;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* ================= PROMPT BOX ================= */
+
+        .prompt-box {
+            background: #f8fbff;
+            border: 1px solid #dbe8f7;
+            border-radius: 10px;
+            padding: 24px;
+            margin: 18px 0;
+        }
+
+        .prompt-box h3 {
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .prompt-text {
+            background: white;
+            border-left: 4px solid #0d6efd;
+            padding: 15px;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* ================= DESIGN PROCESS ================= */
+
+        .process {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .process-card {
+            border: 1px solid #e2e7ed;
+            border-radius: 10px;
+            padding: 24px;
+            background: white;
+        }
+
+        .process-card h3 {
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .process-card ul {
+            padding-left: 20px;
+            color: #666;
+        }
+
+        .process-card li {
+            margin-bottom: 8px;
+        }
+
+        /* ================= TABLE ================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #0d6efd;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 15px;
+            border-bottom: 1px solid #e5e5e5;
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: #f8fbff;
+        }
+
+        /* ================= CHECKLIST ================= */
+
+        .checklist {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .check-item {
+            background: #f8fbff;
+            border: 1px solid #e2ebf7;
+            padding: 17px;
+            border-radius: 8px;
+        }
+
+        .check-item strong {
+            color: #0d6efd;
+        }
+
+        /* ================= EXAMPLES ================= */
+
+        .poster-preview {
+            max-width: 650px;
+            margin: 30px auto;
+            border: 1px solid #dce3eb;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .poster-header {
+            background: #0d6efd;
+            color: white;
+            padding: 35px 25px;
+            text-align: center;
+        }
+
+        .poster-header h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .poster-body {
+            padding: 30px;
+            text-align: center;
+            background: white;
+        }
+
+        .poster-body h3 {
+            color: #0d6efd;
+            margin-bottom: 12px;
+        }
+
+        .poster-body p {
+            color: #666;
+        }
+
+        .poster-footer {
+            padding: 15px;
+            background: #f4f7fb;
+            text-align: center;
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* ================= SECURITY ================= */
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .security-item {
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e1e6eb;
+            background: white;
+        }
+
+        .security-item h3 {
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        .security-item p {
+            color: #666;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            background: #0d6efd;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 750px;
+            margin: auto;
+            color: #eaf3ff;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #084298;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #dceaff;
+            margin: 4px 0;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tool-box,
+            .security-grid,
+            .checklist {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .cards,
+            .steps,
+            .process {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            section {
+                padding: 45px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Udyam<span>Setu</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#packaging">Packaging</a></li>
+            <li><a href="#posters">Posters</a></li>
+            <li><a href="#checklist">Checklist</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <header class="hero">
+
+        <div class="hero-badge">
+            Digital Marketing &amp; AI Empowerment
+        </div>
+
+        <h1>Free Social Media Branding with AI</h1>
+
+        <p>
+            Learn how to create professional packaging banners, product labels,
+            social media creatives and festival marketing posters using Canva
+            and accessible AI tools.
+        </p>
+
+    </header>
+
+
+    <!-- ================= INTRODUCTION ================= -->
+
+    <section id="introduction">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Introduction</h2>
+
+                <p>
+                    Build a consistent and professional digital identity
+                    without requiring advanced graphic design skills.
+                </p>
+
+            </div>
+
+            <p class="intro-text">
+
+                Professional branding helps customers recognize products,
+                understand their value and remember the business behind them.
+                Small businesses, Self-Help Groups (SHGs), artisans and
+                entrepreneurs can create useful marketing materials using
+                free or freemium design platforms and AI-assisted tools.
+
+                <br><br>
+
+                Canva can be used to arrange text, photographs, logos,
+                shapes and templates, while AI tools can assist with
+                brainstorming product descriptions, poster ideas, headlines,
+                color combinations and visual concepts.
+
+            </p>
+
+            <div class="info-box">
+
+                <h3>Goal of This Tutorial</h3>
+
+                <p>
+                    The objective is to provide a simple workflow for creating
+                    attractive branding materials that are clear, consistent
+                    and suitable for digital sharing or printing.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BENEFITS ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Benefits of AI-Assisted Branding</h2>
+
+                <p>
+                    Simple digital tools can make everyday marketing work easier.
+                </p>
+
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-icon">🎨</div>
+
+                    <h3>Professional Designs</h3>
+
+                    <p>
+                        Create clean banners, labels and promotional graphics
+                        using templates and simple drag-and-drop design tools.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">🤖</div>
+
+                    <h3>AI Assistance</h3>
+
+                    <p>
+                        Use AI to generate design ideas, marketing copy,
+                        product descriptions and creative concepts.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">📱</div>
+
+                    <h3>Social Media Ready</h3>
+
+                    <p>
+                        Prepare content suitable for platforms such as
+                        WhatsApp, Instagram and Facebook.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">🏷️</div>
+
+                    <h3>Better Product Labels</h3>
+
+                    <p>
+                        Organize important product information into a
+                        readable and consistent label design.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">🎉</div>
+
+                    <h3>Festival Marketing</h3>
+
+                    <p>
+                        Create seasonal promotional posters for festivals,
+                        local events and special offers.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">💡</div>
+
+                    <h3>Low-Cost Branding</h3>
+
+                    <p>
+                        Start with free design resources and use paid features
+                        only when they are genuinely useful for the business.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TOOLS ================= -->
+
+    <section id="tools">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Recommended Free &amp; Accessible Tools</h2>
+
+                <p>
+                    Different tools can support different stages of the branding process.
+                </p>
+
+            </div>
+
+            <div class="tool-box">
+
+                <div class="tool">
+
+                    <h3>🎨 Canva</h3>
+
+                    <p>
+                        Use Canva to create posters, banners, labels, social
+                        media posts, presentations and other visual materials.
+                        Templates can help beginners start quickly.
+                    </p>
+
+                    <span class="tool-tag">Design &amp; Templates</span>
+
+                </div>
+
+                <div class="tool">
+
+                    <h3>🤖 Free AI Tools</h3>
+
+                    <p>
+                        AI assistants can help brainstorm slogans, product
+                        descriptions, campaign ideas, poster text and content
+                        variations.
+                    </p>
+
+                    <span class="tool-tag">Ideas &amp; Content</span>
+
+                </div>
+
+                <div class="tool">
+
+                    <h3>📸 Smartphone Camera</h3>
+
+                    <p>
+                        A smartphone can be used to capture product photographs.
+                        Good lighting, a clean background and clear framing
+                        can improve the final design.
+                    </p>
+
+                    <span class="tool-tag">Product Photography</span>
+
+                </div>
+
+                <div class="tool">
+
+                    <h3>📱 Social Platforms</h3>
+
+                    <p>
+                        Finished creatives can be adapted for business
+                        communication channels and social media platforms.
+                    </p>
+
+                    <span class="tool-tag">Marketing Distribution</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= AI WORKFLOW ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Step-by-Step AI Branding Workflow</h2>
+
+                <p>
+                    Follow these steps to turn a simple product idea into a marketing creative.
+                </p>
+
+            </div>
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">1</div>
+
+                    <h3>Define the Product</h3>
+
+                    <p>
+                        Write down the product name, key features,
+                        target customers and important selling points.
+                    </p>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="step-number">2</div>
+
+                    <h3>Generate Ideas</h3>
+
+                    <p>
+                        Ask an AI tool for possible headlines,
+                        slogans, descriptions or campaign concepts.
+                    </p>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="step-number">3</div>
+
+                    <h3>Design in Canva</h3>
+
+                    <p>
+                        Select a suitable template and add your product
+                        image, text, logo and contact information.
+                    </p>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="step-number">4</div>
+
+                    <h3>Review &amp; Share</h3>
+
+                    <p>
+                        Check spelling, pricing and contact details before
+                        downloading or publishing the final design.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= AI PROMPTS ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Useful AI Prompts for Branding</h2>
+
+                <p>
+                    Clear prompts can help generate more relevant marketing ideas.
+                </p>
+
+            </div>
+
+            <div class="prompt-box">
+
+                <h3>Product Description</h3>
+
+                <div class="prompt-text">
+                    "Write a short and professional product description for
+                    a handmade product. Keep it simple, customer-friendly and
+                    suitable for a social media post."
+                </div>
+
+            </div>
+
+            <div class="prompt-box">
+
+                <h3>Poster Headline</h3>
+
+                <div class="prompt-text">
+                    "Suggest 10 short promotional headlines for a small
+                    handmade products business. Make them suitable for
+                    a festival marketing poster."
+                </div>
+
+            </div>
+
+            <div class="prompt-box">
+
+                <h3>Social Media Caption</h3>
+
+                <div class="prompt-text">
+                    "Create a concise social media caption introducing a
+                    locally made product. Include a clear call to action
+                    without making unsupported claims."
+                </div>
+
+            </div>
+
+            <div class="prompt-box">
+
+                <h3>Design Concept</h3>
+
+                <div class="prompt-text">
+                    "Suggest a simple poster design concept for a small
+                    business promoting its products during a festival.
+                    Recommend layout, headline placement and suitable
+                    visual elements."
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PACKAGING ================= -->
+
+    <section id="packaging">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Creating Packaging Banners &amp; Labels</h2>
+
+                <p>
+                    A good label should communicate essential information clearly.
+                </p>
+
+            </div>
+
+            <div class="process">
+
+                <div class="process-card">
+
+                    <h3>1. Start the Design</h3>
+
+                    <ul>
+                        <li>Open Canva.</li>
+                        <li>Select a label or custom-size design.</li>
+                        <li>Choose a simple layout.</li>
+                        <li>Keep sufficient empty space.</li>
+                    </ul>
+
+                </div>
+
+                <div class="process-card">
+
+                    <h3>2. Add Brand Elements</h3>
+
+                    <ul>
+                        <li>Business or group name.</li>
+                        <li>Logo if available.</li>
+                        <li>Product name.</li>
+                        <li>Consistent typography.</li>
+                    </ul>
+
+                </div>
+
+                <div class="process-card">
+
+                    <h3>3. Add Product Information</h3>
+
+                    <ul>
+                        <li>Product details.</li>
+                        <li>Quantity or size where relevant.</li>
+                        <li>Contact information.</li>
+                        <li>Other applicable information.</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="warning-box">
+
+                <h3>Check Information Before Printing</h3>
+
+                <p>
+                    Carefully review product names, prices, quantities,
+                    contact details and any required product information.
+                    AI-generated text should always be checked by a person
+                    before it is published or printed.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FESTIVAL POSTERS ================= -->
+
+    <section id="posters">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Festival Marketing Posters</h2>
+
+                <p>
+                    Create attractive promotional designs for seasonal campaigns
+                    while keeping the message simple and easy to understand.
+                </p>
+
+            </div>
+
+            <div class="poster-preview">
+
+                <div class="poster-header">
+
+                    <h2>Festival Collection</h2>
+
+                    <p>Celebrate with locally crafted products</p>
+
+                </div>
+
+                <div class="poster-body">
+
+                    <h3>Special Product Collection</h3>
+
+                    <p>
+                        Explore our selected range of handmade products
+                        for your festive celebrations.
+                    </p>
+
+                    <br>
+
+                    <strong>Order / Enquire: Your Business Contact</strong>
+
+                </div>
+
+                <div class="poster-footer">
+
+                    Your Business Name • WhatsApp / Contact • Social Media Handle
+
+                </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>Recommended Poster Structure</h3>
+
+                <p>
+                    <strong>Headline → Product Image → Short Message →
+                    Offer or Key Information → Contact / Call to Action</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DESIGN RULES ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Simple Branding Rules</h2>
+
+                <p>
+                    Consistency is more important than adding too many design elements.
+                </p>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Design Element</th>
+                            <th>Recommended Practice</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Logo</td>
+                            <td>Use the same logo consistently across marketing materials.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Colors</td>
+                            <td>Choose a small set of consistent brand colors.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Fonts</td>
+                            <td>Use readable fonts and avoid excessive font combinations.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Images</td>
+                            <td>Use clear, relevant and good-quality product photographs.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Text</td>
+                            <td>Keep important messages short and easy to scan.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Contact</td>
+                            <td>Provide accurate business contact information where appropriate.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Call to Action</td>
+                            <td>Clearly tell customers what action they can take next.</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= AI SAFETY ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Responsible Use of AI</h2>
+
+                <p>
+                    AI can speed up creative work, but human review remains important.
+                </p>
+
+            </div>
+
+            <div class="security-grid">
+
+                <div class="security-item">
+
+                    <h3>✓ Verify Facts</h3>
+
+                    <p>
+                        Check AI-generated product information, claims,
+                        prices and business details before publishing.
+                    </p>
+
+                </div>
+
+                <div class="security-item">
+
+                    <h3>✓ Protect Private Information</h3>
+
+                    <p>
+                        Avoid entering confidential customer, financial or
+                        account information into public AI tools.
+                    </p>
+
+                </div>
+
+                <div class="security-item">
+
+                    <h3>✓ Review Images</h3>
+
+                    <p>
+                        Check AI-assisted visuals carefully for inaccurate
+                        product features or misleading representations.
+                    </p>
+
+                </div>
+
+                <div class="security-item">
+
+                    <h3>✓ Respect Copyright</h3>
+
+                    <p>
+                        Use images, fonts, logos and other creative assets
+                        according to their applicable usage rights.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= IMPLEMENTATION CHECKLIST ================= -->
+
+    <section id="checklist">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Branding Implementation Checklist</h2>
+
+                <p>
+                    Use this checklist before publishing a design.
+                </p>
+
+            </div>
+
+            <div class="checklist">
+
+                <div class="check-item">
+                    <strong>✓</strong> Business or group name is correct.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Product name and details are accurate.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Product photograph is clear.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Price or offer information is correct.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Contact details have been checked.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Spelling and grammar have been reviewed.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Logo and brand colors are consistent.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Design is readable on a mobile screen.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> AI-generated content has been reviewed.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓</strong> Images and design assets are used appropriately.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONCLUSION ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Conclusion</h2>
+
+            </div>
+
+            <p class="intro-text">
+
+                Free and accessible digital design tools can help SHGs,
+                artisans, entrepreneurs and small businesses create a more
+                consistent visual identity.
+
+                <br><br>
+
+                By combining Canva's design capabilities with AI-assisted
+                brainstorming and content creation, users can develop
+                packaging labels, product banners, social media creatives
+                and festival marketing posters without needing advanced
+                graphic design experience.
+
+                <br><br>
+
+                The most effective approach is simple: <strong>plan the message,
+                create the design, verify the information and then publish.</strong>
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="cta">
+
+        <h2>Build Your Brand Digitally</h2>
+
+        <p>
+            UdyamSetu encourages entrepreneurs and SHGs to use accessible
+            digital tools to improve product presentation, customer
+            communication and online visibility.
+        </p>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 UdyamSetu | Free Social Media Branding with AI
+        </p>
+
+        <p>
+            Digital empowerment for entrepreneurs, SHGs and small businesses.
+        </p>
+
+    </footer>
+
+</body>
+</html>

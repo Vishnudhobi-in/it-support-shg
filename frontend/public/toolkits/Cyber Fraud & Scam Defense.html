@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Fraud &amp; Scam Defense | UdyamSetu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #0d6efd;
+            color: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #eaf3ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #dbeaff;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: #0d6efd;
+            color: white;
+            padding: 80px 7%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 18px;
+            color: #edf5ff;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* ================= GENERAL ================= */
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        section {
+            padding: 65px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            color: #0d6efd;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .intro-text {
+            max-width: 950px;
+            margin: auto;
+            text-align: center;
+            font-size: 17px;
+            color: #555;
+        }
+
+        /* ================= CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e4e9ef;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: #eaf3ff;
+            color: #0d6efd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* ================= WARNING BOX ================= */
+
+        .warning-box {
+            background: #fff8e6;
+            border-left: 5px solid #f0ad00;
+            padding: 22px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box h3 {
+            color: #9a6a00;
+            margin-bottom: 8px;
+        }
+
+        .warning-box p {
+            color: #66501f;
+        }
+
+        .danger-box {
+            background: #fff1f1;
+            border-left: 5px solid #dc3545;
+            padding: 22px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .danger-box h3 {
+            color: #b02a37;
+            margin-bottom: 8px;
+        }
+
+        /* ================= SCAM TABLE ================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #0d6efd;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px 15px;
+            border-bottom: 1px solid #e5e5e5;
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: #f8fbff;
+        }
+
+        /* ================= CHECKLIST ================= */
+
+        .checklist {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .check-item {
+            background: #f8fbff;
+            border: 1px solid #e2ebf7;
+            padding: 17px;
+            border-radius: 8px;
+        }
+
+        .check-item strong {
+            color: #0d6efd;
+        }
+
+        /* ================= STEPS ================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 25px 18px;
+            border: 1px solid #e2e7ed;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #0d6efd;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .step h3 {
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* ================= FAKE PAYMENT SCREENSHOT ================= */
+
+        .example-box {
+            background: #f8fbff;
+            border: 1px solid #dce8f7;
+            padding: 28px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        .fake-payment {
+            max-width: 550px;
+            margin: 20px auto;
+            background: white;
+            border: 2px dashed #dc3545;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .fake-payment h3 {
+            color: #dc3545;
+            margin-bottom: 12px;
+        }
+
+        .fake-payment .amount {
+            font-size: 30px;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .fake-payment p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .verify-note {
+            background: #eaf3ff;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 20px;
+            color: #174a85;
+        }
+
+        /* ================= PHISHING ================= */
+
+        .message-example {
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .message-example .fake-link {
+            color: #0d6efd;
+            text-decoration: underline;
+            word-break: break-all;
+        }
+
+        .red-text {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .green-text {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        /* ================= SECURITY GRID ================= */
+
+        .security-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .security-item {
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e1e6eb;
+            background: white;
+        }
+
+        .security-item h3 {
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        /* ================= INCIDENT RESPONSE ================= */
+
+        .response-box {
+            background: #f8fbff;
+            border: 1px solid #dbe8f7;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .response-box ol {
+            padding-left: 22px;
+        }
+
+        .response-box li {
+            margin-bottom: 14px;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            background: #0d6efd;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 750px;
+            margin: auto;
+            color: #eaf3ff;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #084298;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #dceaff;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .security-list,
+            .checklist {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .cards,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 45px 0;
+            }
+
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Udyam<span>Setu</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#payment">Payment Scams</a></li>
+            <li><a href="#phishing">Phishing</a></li>
+            <li><a href="#account">Account Security</a></li>
+            <li><a href="#response">Response</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <header class="hero">
+
+        <div class="hero-badge">
+            Digital Safety &amp; Cyber Awareness
+        </div>
+
+        <h1>Cyber Fraud &amp; Scam Defense</h1>
+
+        <p>
+            Learn how to identify fake customer payment screenshots,
+            phishing SMS links, fraudulent messages and unauthorized
+            account access attempts while protecting your business,
+            customers and digital payments.
+        </p>
+
+    </header>
+
+
+    <!-- ================= INTRODUCTION ================= -->
+
+    <section id="introduction">
+
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Introduction</h2>
+                <p>Building awareness is the first step towards safer digital business.</p>
+            </div>
+
+            <p class="intro-text">
+                Digital payments, online marketplaces and messaging applications
+                have made it easier for small businesses, Self-Help Groups (SHGs)
+                and entrepreneurs to communicate with customers and receive orders.
+                However, increased digital activity can also expose businesses to
+                phishing, fake payment confirmations, impersonation and account
+                takeover attempts.
+                <br><br>
+                Cyber Fraud &amp; Scam Defense focuses on practical habits that help
+                users verify payments, identify suspicious links, protect account
+                credentials and respond quickly when something appears unusual.
+            </p>
+
+            <div class="warning-box">
+
+                <h3>Important Rule: Verify Before You Trust</h3>
+
+                <p>
+                    Never consider a payment complete merely because a customer
+                    shows a screenshot or sends an SMS claiming that money has
+                    been transferred. Always verify the transaction through the
+                    official payment application, bank account or merchant
+                    dashboard before providing goods or services.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMMON SCAMS ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Common Cyber Fraud Risks</h2>
+                <p>Recognize the warning signs before a scam causes financial or account-related loss.</p>
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-icon">💳</div>
+
+                    <h3>Fake Payment Screenshots</h3>
+
+                    <p>
+                        Fraudsters may show edited or fabricated payment
+                        screenshots to convince a seller that a transaction
+                        has been completed.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">🔗</div>
+
+                    <h3>Phishing Links</h3>
+
+                    <p>
+                        Fraudulent SMS, emails or messages may contain links
+                        designed to trick users into entering passwords,
+                        banking information or other sensitive details.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">📱</div>
+
+                    <h3>Fake Customer Support</h3>
+
+                    <p>
+                        Scammers may pretend to be bank, payment service or
+                        marketplace representatives and ask for confidential
+                        information or remote access.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">👤</div>
+
+                    <h3>Impersonation</h3>
+
+                    <p>
+                        Criminals can impersonate customers, suppliers,
+                        employees or business contacts to create false
+                        payment or order requests.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">🔐</div>
+
+                    <h3>Account Takeover</h3>
+
+                    <p>
+                        Weak passwords, reused credentials and exposed
+                        verification codes can increase the risk of
+                        unauthorized account access.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">⚠️</div>
+
+                    <h3>Urgent Requests</h3>
+
+                    <p>
+                        Pressure tactics such as "pay immediately" or
+                        "verify your account now" are common warning signs
+                        of suspicious communication.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PAYMENT SCAMS ================= -->
+
+    <section id="payment">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>How to Identify Fake Payment Screenshots</h2>
+
+                <p>
+                    A screenshot is not proof that money has reached your account.
+                </p>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Warning Sign</th>
+                            <th>What to Check</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Payment screenshot only</td>
+                            <td>Check your own bank or payment application instead of relying on the screenshot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Transaction ID appears suspicious</td>
+                            <td>Verify the transaction reference through the official payment platform.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Customer creates urgency</td>
+                            <td>Take time to confirm the actual payment status.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Amount does not match</td>
+                            <td>Compare the amount received with the order amount.</td>
+                        </tr>
+
+                        <tr>
+                            <td>SMS claims payment received</td>
+                            <td>Do not depend only on an SMS. Check the official account or merchant dashboard.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Customer asks for OTP or PIN</td>
+                            <td>Never share OTPs, UPI PINs, passwords or authentication codes.</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="example-box">
+
+                <h3 style="color:#0d6efd;">Example: Suspicious Payment Proof</h3>
+
+                <div class="fake-payment">
+
+                    <h3>⚠ Payment Screenshot</h3>
+
+                    <div class="amount">₹2,500</div>
+
+                    <p>
+                        Customer says: "Payment completed. Please deliver the product."
+                    </p>
+
+                    <br>
+
+                    <p class="red-text">
+                        Do not treat this screenshot as final proof of payment.
+                    </p>
+
+                </div>
+
+                <div class="verify-note">
+
+                    <strong>Correct Action:</strong>
+
+                    Open your official bank/payment application and verify
+                    whether ₹2,500 has actually been credited before completing
+                    the order.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PHISHING ================= -->
+
+    <section id="phishing">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Phishing SMS &amp; Suspicious Links</h2>
+
+                <p>
+                    Be cautious when a message asks you to click a link,
+                    provide information or take immediate action.
+                </p>
+
+            </div>
+
+
+            <div class="message-example">
+
+                <strong>Example of a suspicious message:</strong>
+
+                <br><br>
+
+                "Your merchant account requires immediate verification.
+                Click the link below to avoid suspension."
+
+                <br><br>
+
+                <span class="fake-link">
+                    example-suspicious-link.com/verify
+                </span>
+
+                <br><br>
+
+                <span class="red-text">
+                    Warning: Do not open suspicious links.
+                </span>
+
+            </div>
+
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-icon">🔍</div>
+
+                    <h3>Check the Sender</h3>
+
+                    <p>
+                        Examine the sender carefully. A familiar-looking
+                        name does not necessarily mean the message is genuine.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">🔗</div>
+
+                    <h3>Inspect the Link</h3>
+
+                    <p>
+                        Be cautious with unfamiliar or shortened links.
+                        When in doubt, open the official website or application
+                        directly instead of using the message link.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">🚨</div>
+
+                    <h3>Watch for Urgency</h3>
+
+                    <p>
+                        Messages demanding immediate action, threatening
+                        account closure or promising rewards should be
+                        treated carefully.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="danger-box">
+
+                <h3>Never Share Confidential Information</h3>
+
+                <p>
+                    Legitimate support staff should not require you to disclose
+                    your passwords, UPI PIN, ATM PIN, OTP or authentication
+                    codes. Do not enter such information after following an
+                    unexpected message link.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ACCOUNT SECURITY ================= -->
+
+    <section id="account">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Prevent Unauthorized Account Access</h2>
+
+                <p>
+                    Strong account security reduces the risk of unauthorized
+                    access to business and payment-related accounts.
+                </p>
+
+            </div>
+
+
+            <div class="security-list">
+
+                <div class="security-item">
+
+                    <h3>🔐 Use Strong Passwords</h3>
+
+                    <p>
+                        Use long, unique passwords for important accounts
+                        and avoid using the same password everywhere.
+                    </p>
+
+                </div>
+
+
+                <div class="security-item">
+
+                    <h3>🛡️ Enable Two-Factor Authentication</h3>
+
+                    <p>
+                        Where available, enable two-factor authentication
+                        to add another layer of protection.
+                    </p>
+
+                </div>
+
+
+                <div class="security-item">
+
+                    <h3>📲 Protect Your Phone</h3>
+
+                    <p>
+                        Use a screen lock and keep your operating system
+                        and important applications updated.
+                    </p>
+
+                </div>
+
+
+                <div class="security-item">
+
+                    <h3>🚫 Never Share OTPs</h3>
+
+                    <p>
+                        Verification codes are confidential. Never share
+                        them with customers, strangers or people claiming
+                        to provide technical support.
+                    </p>
+
+                </div>
+
+
+                <div class="security-item">
+
+                    <h3>💻 Review Logged-In Devices</h3>
+
+                    <p>
+                        Periodically check account security settings for
+                        unfamiliar devices or sessions and sign out of
+                        sessions you do not recognize.
+                    </p>
+
+                </div>
+
+
+                <div class="security-item">
+
+                    <h3>📧 Secure Business Email</h3>
+
+                    <p>
+                        Protect the email account associated with business
+                        services because it may be used for password recovery.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SAFE PAYMENT PRACTICES ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Safe Digital Payment Practices</h2>
+
+                <p>
+                    Follow a simple verification process for every customer transaction.
+                </p>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">1</div>
+
+                    <h3>Receive Order</h3>
+
+                    <p>
+                        Confirm the customer's order and the exact amount.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">2</div>
+
+                    <h3>Check Payment</h3>
+
+                    <p>
+                        Verify the payment directly through your official
+                        payment or bank application.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">3</div>
+
+                    <h3>Confirm Credit</h3>
+
+                    <p>
+                        Make sure the actual amount has been credited
+                        before processing the order.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">4</div>
+
+                    <h3>Complete Order</h3>
+
+                    <p>
+                        Only after successful verification should the
+                        product or service be delivered.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WHAT NOT TO DO ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Things You Should Never Do</h2>
+
+                <p>Simple rules that can prevent many common digital payment scams.</p>
+
+            </div>
+
+
+            <div class="checklist">
+
+                <div class="check-item">
+                    <strong>✕ Do not</strong> accept a screenshot as the only payment proof.
+                </div>
+
+                <div class="check-item">
+                    <strong>✕ Do not</strong> share your UPI PIN with anyone.
+                </div>
+
+                <div class="check-item">
+                    <strong>✕ Do not</strong> share OTPs or verification codes.
+                </div>
+
+                <div class="check-item">
+                    <strong>✕ Do not</strong> click unknown payment or account links.
+                </div>
+
+                <div class="check-item">
+                    <strong>✕ Do not</strong> install apps at the request of an unknown caller.
+                </div>
+
+                <div class="check-item">
+                    <strong>✕ Do not</strong> allow unnecessary remote access to your device.
+                </div>
+
+                <div class="check-item">
+                    <strong>✕ Do not</strong> rush because someone creates artificial urgency.
+                </div>
+
+                <div class="check-item">
+                    <strong>✓ Always</strong> verify important transactions independently.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INCIDENT RESPONSE ================= -->
+
+    <section id="response">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>What to Do If You Suspect Fraud</h2>
+
+                <p>
+                    Quick and careful action can help limit further risk.
+                </p>
+
+            </div>
+
+
+            <div class="response-box">
+
+                <ol>
+
+                    <li>
+                        <strong>Stop the transaction:</strong>
+                        Do not send additional money or information.
+                    </li>
+
+                    <li>
+                        <strong>Secure your accounts:</strong>
+                        Change compromised passwords and review account
+                        security settings.
+                    </li>
+
+                    <li>
+                        <strong>Contact the relevant service:</strong>
+                        Use the official bank, payment provider or
+                        marketplace support channel.
+                    </li>
+
+                    <li>
+                        <strong>Preserve evidence:</strong>
+                        Keep relevant transaction details, messages and
+                        communication records without forwarding sensitive
+                        information unnecessarily.
+                    </li>
+
+                    <li>
+                        <strong>Report the incident:</strong>
+                        If financial fraud or unauthorized access has occurred,
+                        report it promptly through the appropriate official
+                        cybercrime or financial-fraud reporting channel.
+                    </li>
+
+                    <li>
+                        <strong>Inform your group:</strong>
+                        For SHGs or small business teams, alert relevant
+                        members so that the same scam does not affect others.
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= IMPLEMENTATION CHECKLIST ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Cyber Safety Implementation Checklist</h2>
+
+                <p>
+                    A simple checklist for SHGs, entrepreneurs and small businesses.
+                </p>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Security Area</th>
+                            <th>Recommended Practice</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Payments</td>
+                            <td>Verify every payment through the official account or merchant application.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Passwords</td>
+                            <td>Use strong and unique passwords.</td>
+                        </tr>
+
+                        <tr>
+                            <td>OTP</td>
+                            <td>Keep OTPs and authentication codes private.</td>
+                        </tr>
+
+                        <tr>
+                            <td>UPI PIN</td>
+                            <td>Never share the UPI PIN with another person.</td>
+                        </tr>
+
+                        <tr>
+                            <td>SMS Links</td>
+                            <td>Avoid unexpected links and access services through official applications or websites.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Devices</td>
+                            <td>Keep devices and applications updated and protected with a screen lock.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Account Review</td>
+                            <td>Regularly check account activity and unfamiliar login sessions.</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONCLUSION ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Conclusion</h2>
+
+            </div>
+
+            <p class="intro-text">
+
+                Cyber safety is an important part of running a modern digital
+                business. Fake payment screenshots, phishing links,
+                impersonation and unauthorized account access can create
+                serious risks for entrepreneurs and Self-Help Groups.
+
+                <br><br>
+
+                By verifying payments independently, protecting confidential
+                information, using strong account security and responding
+                quickly to suspicious activity, businesses can reduce their
+                exposure to common digital scams.
+
+                <br><br>
+
+                <strong>
+                    Think before you click. Verify before you trust.
+                </strong>
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="cta">
+
+        <h2>Stay Alert. Stay Secure.</h2>
+
+        <p>
+            UdyamSetu promotes practical digital awareness so that
+            entrepreneurs, SHGs and small businesses can participate
+            confidently in the digital economy.
+        </p>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 UdyamSetu | Cyber Fraud &amp; Scam Defense
+        </p>
+
+        <p>
+            Digital awareness for entrepreneurs, SHGs and small businesses.
+        </p>
+
+    </footer>
+
+</body>
+</html>
